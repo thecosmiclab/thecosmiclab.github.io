@@ -1,0 +1,36 @@
+# Shown only when site.lab.show_projects is true.
+- name: cosmic-sim
+  status: Maintained
+  archived: false
+  desc: "Cycle-level simulator for the accelerator and memory models used across the lab, with a Python configuration layer."
+  meta: "C++, Python · Apache-2.0 · updated Jun 2026"
+  links:
+    - { label: GitHub, href: "#" }
+    - { label: Docs, href: "#" }
+  paper: { venue: "MICRO 2026", title: "Sparse Attention on the Edge", anchor: p-micro26 }
+
+- name: edge-runtime
+  status: Maintained
+  archived: false
+  desc: "Inference runtime for on-device models: operator scheduling, quantized kernels, and a power measurement harness."
+  meta: "Rust, C++ · MIT · updated May 2026"
+  links:
+    - { label: GitHub, href: "#" }
+    - { label: Demo, href: "#" }
+  paper: { venue: "ISCA 2026", title: "Tiering Without Tears", anchor: p-isca26 }
+
+- name: artifact-mlsys26
+  status: Artifact
+  archived: false
+  desc: "Reproduction package for the MLSys 2026 paper, with scripts, datasets, and the figures exactly as published."
+  meta: "Python, Docker · updated Feb 2026"
+  links:
+    - { label: GitHub, href: "#" }
+    - { label: Zenodo, href: "#" }
+
+- name: trace-tools
+  status: Archived
+  archived: true
+  desc: "Early tracing utilities, superseded by the instrumentation built into cosmic-sim."
+  links:
+    - { label: GitHub, href: "#" }

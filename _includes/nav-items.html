@@ -1,0 +1,13 @@
+{%- comment -%}
+  The nav is derived from the pages themselves: each one declares `nav_label`
+  and `nav_order` in its front matter, so a page's URL, its label, its position,
+  and its feature flag all live in one file. `include.all` keeps Home, which the
+  desktop bar leaves to the wordmark.
+{%- endcomment -%}
+{%- assign navpages = site.pages | where_exp: "p", "p.nav_order" | sort: "nav_order" -%}
+{%- for p in navpages -%}
+  {%- if p.flag and site.lab[p.flag] != true -%}{%- continue -%}{%- endif -%}
+  {%- unless include.all -%}{%- if p.nav_order == 0 -%}{%- continue -%}{%- endif -%}{%- endunless -%}
+  {%- if p.url == page.url -%}{%- assign current = true -%}{%- else -%}{%- assign current = false -%}{%- endif -%}
+  <li><a href="{{ p.url | relative_url }}"{% if current %} aria-current="page"{% endif %}>{{ p.nav_label }}{% if current %}{% if include.all %}<span class="dot" aria-hidden="true"></span>{% else %}<span class="ul" aria-hidden="true"></span>{% endif %}{% endif %}</a></li>
+{%- endfor -%}

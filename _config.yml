@@ -1,0 +1,102 @@
+title: COSMIC Lab
+tagline: Computer System and Microarchitecture Design Laboratory
+description: >-
+  COSMIC Lab at GIST designs computer systems and microarchitecture across the
+  hardware-software boundary to accelerate diverse emerging workloads.
+url: "https://thecosmiclab.github.io"
+baseurl: ""
+lang: en
+
+# ---------------------------------------------------------------------------
+# Lab configuration
+#
+# The three feature flags each gate the nav tab, the mobile menu item, and
+# every in-page link to that view. Missing one leaves a link to a page that
+# is no longer built.
+# ---------------------------------------------------------------------------
+lab:
+  institution: GIST
+  brand_color: "#0F2C59"
+
+  # Turn off outside recruiting periods.
+  show_join: true
+  # Turn on once there are repos and demos worth showing.
+  show_projects: false
+  # Drives the Join status banner tone and the CTA treatment. Single source
+  # of truth for recruiting status across the whole site.
+  recruiting_open: true
+
+  pi:
+    name: Hyunwuk Lee
+    korean: 이현욱
+    title: Assistant Professor
+    school: Graduate School of Advanced Semiconductor Engineering
+    email: hyunwuklee@gist.ac.kr
+    office: "GIST College Building A, Room 206"
+    photo: /assets/img/people/hyunwuk-lee.jpg
+    # Delete any line whose URL you do not have — an entry is only rendered
+    # if it is here, so there are no dead links.
+    links:
+      - { label: Homepage, href: "https://hyunwuklee0519.github.io/" }
+      - { label: CV, href: "https://hyunwuklee0519.github.io/CV/" }
+      - { label: Google Scholar, href: "https://scholar.google.com/citations?user=2iXaOuEAAAAJ" }
+      - { label: LinkedIn, href: "https://www.linkedin.com/in/hyunwuk-lee-56a7b4297" }
+    # Taken from the PI's own homepage — edit freely.
+    bio: >-
+      My research is in computer architecture, focused on hardware-software
+      co-design for efficient AI systems: quantization, KV cache optimization,
+      memory system design, and neural network accelerators. I received my
+      Ph.D. in Electrical and Electronic Engineering from Yonsei University,
+      advised by Won Woo Ro, and worked as a System Architect at Samsung
+      Electronics before joining GIST.
+
+  # The Join page's status banner. Everything here changes once per intake
+  # cycle, so it lives in one place rather than inside the page markup.
+  #
+  # TODO: add the deadline to `open_body` once the department announces it.
+  recruiting:
+    open_headline: "Ph.D., M.S., and undergraduate researchers for Spring 2027"
+    open_body: >-
+      The application deadline is set by the department and has not been
+      announced yet. Emailing the PI before it opens is recommended.
+    closed_headline: "We are not recruiting at the moment"
+    closed_body: >-
+      Watch this page for the next intake, or email the PI to be told when it
+      opens.
+
+  # GIST's graduate admissions site — the schedule and required documents live
+  # there, not here, so the Join page links to it rather than restating it.
+  admissions_url: "https://www.gist.ac.kr/gadm/main.html"
+
+  # Subject-line tag applicants are asked to use.
+  subject_tag: "GIST Application"
+  github_org: "https://github.com/thecosmiclab"
+
+# The card image shown when a link to any page is pasted into a chat or feed.
+# Source is tools/og-image.html; regenerate with ./tools/og-image.sh.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /assets/img/og-image.png
+        width: 1200
+        height: 630
+        alt: "COSMIC Lab, Computer System and Microarchitecture Design Laboratory at GIST"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - .DS_Store
+  - tools
+  - assets/img/people/README.md
+  - assets/img/research/README.md
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - _design-ref
+  - .claude

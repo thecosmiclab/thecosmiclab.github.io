@@ -1,0 +1,10 @@
+.DS_Store
+.bundle/
+.claude/settings.local.json
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+Gemfile.lock
+_design-ref/
+_site/
+vendor/

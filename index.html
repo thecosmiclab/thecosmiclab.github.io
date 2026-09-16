@@ -1,67 +1,82 @@
-<!doctype html>
-<!--
-  TEMPORARY HOLDING PAGE — replace entirely when the real site is built.
+---
+layout: default
+nav_label: Home
+nav_order: 0
+# Two paragraphs is the ceiling — the card height is meant to stay put.
+intro_body:
+  - >-
+    COSMIC Lab designs computer systems and microarchitecture across the
+    hardware-software boundary to accelerate diverse emerging workloads. We
+    focus on breaking the fundamental bottlenecks where algorithmic complexity
+    meets physical architecture limits.
+  - >-
+    Our research spans a broad computing stack, from on-device accelerators to
+    datacenter-scale memory systems. By pursuing vertical co-design across
+    microarchitecture, runtimes, and system software, we build foundational
+    infrastructure for artificial intelligence and beyond.
+---
 
-  Purpose: verify the deployment path end to end before there is anything to lose.
-  After pushing this, check all four:
-    1. https://thecosmiclab.github.io loads
-    2. the padlock is there (GitHub issues the certificate; can take a few minutes)
-    3. it renders on a phone
-    4. view-source shows lang, title and description
+<section aria-labelledby="page-title">
+  <div class="hero dark" data-theme="dark" data-hero>
+    <div class="gut">
+      <p class="eyebrow">{{ site.lab.institution }}</p>
+      <h1 id="page-title" tabindex="-1" aria-label="{{ site.title }}">{% include wordmark.html mark=false %}</h1>
+      <p class="sub">{{ site.tagline }}</p>
+    </div>
+  </div>
 
-  Deliberately plain: system fonts, no design system, no colour beyond ink on white.
-  Do NOT put an early version of the real design here. Whatever sits at this URL is
-  what people will screenshot and remember, and a half-finished preview creates
-  pressure to keep it.
+  <div class="gut">
+    <div class="band frame">
+      <div class="stack">
+        <p class="lead-h">Welcome to {{ site.title }}</p>
+        {%- for para in page.intro_body -%}
+        <p class="body">{{ para }}</p>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
 
-  FILL IN before the first push: [DEPARTMENT] and the email address.
--->
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COSMIC Lab — Computer Systems and Microarchitecture Design Laboratory</title>
-<meta name="description" content="COSMIC Lab at GIST studies computer systems across the hardware-software boundary, with a focus on making AI efficient. Opening 2026.">
-<style>
-  :root { color-scheme: light dark; }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    padding: 14vh 24px 24px;
-    font: 400 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    color: #1b1c1e;
-    background: #fff;
-    -webkit-font-smoothing: antialiased;
-  }
-  main { max-width: 34rem; margin: 0 auto; }
-  h1 { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .35rem; }
-  .full { margin: 0 0 2rem; color: #5c5f66; }
-  p { margin: 0 0 1.1rem; }
-  .meta { margin-top: 2.5rem; padding-top: 1.4rem; border-top: 1px solid #e6e7e9;
-          font-size: .9375rem; color: #5c5f66; }
-  a { color: inherit; }
-  @media (prefers-color-scheme: dark) {
-    body { color: #f2f2f3; background: #131415; }
-    .full, .meta { color: #a1a4aa; }
-    .meta { border-top-color: #2a2c2e; }
-  }
-</style>
-</head>
-<body>
-<main>
-  <h1>COSMIC Lab</h1>
-  <p class="full">Computer Systems and Microarchitecture Design Laboratory</p>
+  <div class="gut home-body">
+    {%- comment -%}
+      News comes first deliberately: it is the one section with no nav
+      destination of its own. With nothing to announce the whole block —
+      heading, list, toggle, and separator — is omitted.
+    {%- endcomment -%}
+    {%- if site.data.news.size > 0 -%}
+    <div class="sec-head"><h2>News</h2></div>
+    <ul id="ticker">
+      {%- for n in site.data.news -%}
+      <li class="row-news"{% if forloop.index > 5 %} data-older hidden{% endif %}>
+        <span class="date">{{ n.date }}</span>
+        <span class="label">{{ n.label }}</span>
+        <span class="text">{{ n.text }}</span>
+      </li>
+      {%- endfor -%}
+    </ul>
+    {%- if site.data.news.size > 5 -%}
+    <div class="news-more">
+      <button type="button" class="btn btn-sm btn-outlined" data-news-toggle
+              aria-expanded="false" aria-controls="ticker">Show earlier items</button>
+    </div>
+    {%- endif -%}
 
-  <p>We study computer systems across the hardware–software boundary, with a focus
-     on making AI efficient.</p>
+    <div class="bar" aria-hidden="true"></div>
+    {%- endif -%}
 
-  <p>The lab opens in Fall 2026 at GIST. The full site is in preparation.</p>
-
-  <p class="meta">
-    Hyunwuk&nbsp;Lee · Assistant Professor<br>
-    Graduate School of Advanced Semiconductor Engineering, GIST<br>
-    <a href="mailto:hyunwuklee@gist.ac.kr">hyunwuklee@gist.ac.kr</a>
-  </p>
-</main>
-</body>
-</html>
+    <div class="sec-head"><h2>Research</h2></div>
+    <ul class="area-list">
+      {%- assign areas = site.data.thrusts | where_exp: "t", "t.on_research != false" -%}
+      {%- for t in areas -%}
+      <li>
+        <a href="{{ '/research/' | relative_url }}#{{ t.id }}">
+          <span style="display:flex;flex-direction:column;gap:3px">
+            <span class="t">{{ t.title }}</span>
+            <span class="d">{{ t.desc }}</span>
+          </span>
+          <span class="chev" aria-hidden="true">{% include icon.html name="ChevronRight" size=20 %}</span>
+        </a>
+      </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,114 @@
+---
+layout: default
+nav_label: People
+nav_order: 4
+permalink: /people/
+title: People
+---
+
+{%- assign member_count = 0 -%}
+{%- for g in site.data.people.groups -%}
+  {%- assign member_count = member_count | plus: g.members.size -%}
+{%- endfor -%}
+{%- assign total = member_count | plus: 1 -%}
+
+<div class="hero dark" data-theme="dark" data-hero>
+  <div class="gut">
+    <h1 id="page-title" tabindex="-1">People</h1>
+    {%- comment -%}
+      With no members yet, a head count reads oddly — say what is actually
+      true instead.
+    {%- endcomment -%}
+    {%- if total > 1 -%}
+    <p class="lede">The lab has one faculty member{% for g in site.data.people.groups %}{% if g.members.size > 0 %}, {{ g.members.size }} {{ g.label | downcase }}{% endif %}{% endfor %}.</p>
+    {%- else -%}
+    <p class="lede">The lab is just getting started. Students will be listed here as they join.{% if site.lab.show_join %} If you are considering applying, see the <a href="{{ '/join/' | relative_url }}">Join</a> page.{% endif %}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+
+<div class="gut" style="padding-bottom:88px">
+
+  <div class="grid-pi">
+    <div>
+      <div class="thumb">
+        {%- if site.lab.pi.photo and site.lab.pi.photo != "" -%}
+        <img src="{{ site.lab.pi.photo | relative_url }}" alt="{{ site.lab.pi.name }}">
+        {%- else -%}
+        {%- assign pi_parts = site.lab.pi.name | split: " " -%}
+        {%- capture pi_initials %}{% for w in pi_parts %}{{ w | slice: 0 }}{% endfor %}{% endcapture -%}
+        <span class="initials" aria-hidden="true">{{ pi_initials }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+    <div>
+      <h2 class="name">{{ site.lab.pi.name }}</h2>
+      <p class="affil">{{ site.lab.pi.title }} · {{ site.lab.institution }}</p>
+      <p class="affil" style="font-weight:500">{{ site.lab.pi.school }}<br>{{ site.lab.pi.office }}</p>
+      <p class="bio">{{ site.lab.pi.bio }}</p>
+      <p class="bio" style="margin-top:8px"><a href="mailto:{{ site.lab.pi.email }}">{{ site.lab.pi.email }}</a></p>
+      <div class="linkrow">
+        {%- for l in site.lab.pi.links -%}<a href="{{ l.href }}"{% include external.html href=l.href %}>{{ l.label }}</a>{%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  {%- if member_count > 0 -%}
+  <div class="bar" aria-hidden="true"></div>
+  <div class="sec-head"><h2>Members</h2></div>
+
+  {%- for g in site.data.people.groups -%}
+    {%- if g.members.size > 0 -%}
+    <h3 class="t-13b c-slate" style="margin:32px 0 16px">{{ g.label }}</h3>
+    <ul class="grid-members">
+      {%- for m in g.members -%}
+      <li class="member">
+        <div class="thumb">
+          {%- if m.photo and m.photo != "" -%}
+          <img src="{{ m.photo | relative_url }}" alt="{{ m.name }}">
+          {%- else -%}
+          {%- assign parts = m.name | split: " " -%}
+          {%- capture initials %}{% for w in parts %}{{ w | slice: 0 }}{% endfor %}{% endcapture -%}
+          <span class="initials" aria-hidden="true">{{ initials }}</span>
+          {%- endif -%}
+        </div>
+        <p class="name">{{ m.name }}</p>
+        <p class="korean">{{ m.korean }}</p>
+        <p class="role">{{ m.role }}</p>
+        <p class="focus">{{ m.focus }}</p>
+        {%- if m.links.size > 0 -%}
+        <div class="linkrow">
+          {%- for l in m.links -%}<a href="{{ l.href }}"{% include external.html href=l.href %}>{{ l.label }}</a>{%- endfor -%}
+        </div>
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+    {%- endif -%}
+  {%- endfor -%}
+  {%- endif -%}
+
+  {%- if site.data.people.alumni.size > 0 -%}
+  <div class="bar" aria-hidden="true"></div>
+  <div class="sec-head"><h2>Alumni</h2></div>
+  <ul>
+    {%- for a in site.data.people.alumni -%}
+    <li class="row-alumni">
+      <span class="name">{{ a.name }} <span class="deg">{{ a.korean }}</span></span>
+      <span class="deg">{{ a.degree }}</span>
+      <span class="now">{{ a.now }}</span>
+    </li>
+    {%- endfor -%}
+  </ul>
+  {%- endif -%}
+
+  {%- comment -%}
+    Recruiting status lives on Join and nowhere else — this is a link, not a
+    second copy of the status.
+  {%- endcomment -%}
+  {%- if site.lab.show_join -%}
+  <div class="bar" aria-hidden="true"></div>
+  <p class="t-16 c-prose">Interested in joining? <a href="{{ '/join/' | relative_url }}">See who we are looking for and how to apply</a>.</p>
+  {%- endif -%}
+</div>

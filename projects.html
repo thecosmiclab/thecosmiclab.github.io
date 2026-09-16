@@ -1,0 +1,73 @@
+---
+layout: page
+nav_label: Projects
+nav_order: 3
+flag: show_projects
+# While show_projects is off this page only redirects, so keep it out of the
+# sitemap. Remove this line when the flag goes on.
+sitemap: false
+permalink: /projects/
+title: Projects
+# TODO (review): from the design. Only shown when show_projects is on.
+lede: >-
+  Code, simulators, and reproduction packages from the lab. Archived repos are
+  kept read-only so published results stay reproducible.
+---
+
+{%- assign active = site.data.projects | where: "archived", false -%}
+{%- assign archived = site.data.projects | where: "archived", true -%}
+
+<div class="gut" style="padding-bottom:88px">
+  {%- if active.size == 0 and archived.size == 0 -%}
+  <div class="pub-empty">
+    <p class="t">Nothing released yet</p>
+    <p class="d">Code from the lab will appear here as it is published.</p>
+  </div>
+  {%- else -%}
+
+  {%- if active.size > 0 -%}
+  <div class="sec-head" style="margin-top:48px"><h2>Maintained</h2></div>
+  {%- for p in active -%}
+  <article class="grid-project">
+    <div>
+      <h3 class="name">{{ p.name }}<span class="badge badge-neutral">{{ p.status }}</span></h3>
+      <p class="desc">{{ p.desc }}</p>
+      {%- if p.meta %}<p class="meta">{{ p.meta }}</p>{% endif -%}
+    </div>
+    <div>
+      <div class="linkrow" style="margin-top:0">
+        {%- for l in p.links -%}<a href="{{ l.href }}"{% include external.html href=l.href %}>{{ l.label }}</a>{%- endfor -%}
+      </div>
+      {%- if p.paper -%}
+      <p class="t-13 c-slate" style="margin-top:14px">{{ p.paper.venue }}<br>
+        <a href="{{ '/publications/' | relative_url }}#{{ p.paper.anchor }}">{{ p.paper.title }}</a></p>
+      {%- endif -%}
+    </div>
+  </article>
+  {%- endfor -%}
+  {%- endif -%}
+
+  {%- if archived.size > 0 -%}
+  <div class="bar" aria-hidden="true"></div>
+  <div class="sec-head">
+    <h2>Archive</h2>
+    <p class="t-13 c-slate">read-only, kept for reproducibility</p>
+  </div>
+  <ul>
+    {%- for p in archived -%}
+    <li class="row-archive">
+      <span class="t-15 c-ink" style="font-weight:600">{{ p.name }}</span>
+      <span class="t-14 c-slate">{{ p.desc }}</span>
+      <span class="linkrow" style="margin-top:0">
+        {%- for l in p.links -%}<a href="{{ l.href }}"{% include external.html href=l.href %}>{{ l.label }}</a>{%- endfor -%}
+      </span>
+    </li>
+    {%- endfor -%}
+  </ul>
+  {%- endif -%}
+
+  {%- if site.lab.github_org -%}
+  <p class="t-14" style="margin-top:32px"><a href="{{ site.lab.github_org }}"{% include external.html href=site.lab.github_org %}>All repositories on GitHub</a></p>
+  {%- endif -%}
+  {%- endif -%}
+</div>

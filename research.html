@@ -1,0 +1,76 @@
+---
+layout: page
+nav_label: Research
+nav_order: 1
+permalink: /research/
+title: Research
+lede: >-
+  Our research ranges from core microarchitectures to multi-node AI systems.
+  Across these environments, we jointly optimize algorithms, system software,
+  and physical hardware as a single integrated design space to maximize
+  end-to-end efficiency.
+---
+
+{%- assign areas = site.data.thrusts | where_exp: "t", "t.on_research != false" -%}
+<div class="subbar print-hide" data-subbar>
+  <nav class="gut" aria-label="Research directions">
+    {%- for t in areas -%}
+    <a href="#{{ t.id }}" data-area-tab="{{ t.id }}"{% if forloop.first %} class="is-active"{% endif %}>{{ t.nav_label }}{% if forloop.first %}<span class="ul" aria-hidden="true"></span>{% endif %}</a>
+    {%- endfor -%}
+  </nav>
+</div>
+
+<div class="gut" style="padding-bottom:88px">
+  {%- for t in areas -%}
+  <article id="{{ t.id }}" class="grid-research" tabindex="-1">
+    <div class="prose-col">
+      <h2 class="t-24 c-ink">{{ t.title }}</h2>
+      <div class="body-stack">
+        <p><span class="lead">{{ t.lead }}</span> {{ t.p1 }}</p>
+        {%- if t.p2 and t.p2 != "" %}<p>{{ t.p2 }}</p>{% endif -%}
+      </div>
+    </div>
+
+    <div class="side">
+      {%- comment -%}
+        The figure frame appears only once a figure exists. Until then the
+        column is just "Ongoing work" and "Selected work", with no empty box.
+      {%- endcomment -%}
+      {%- if t.figure and t.figure != "" -%}
+      <div class="diagram has-figure"><img src="{{ t.figure | relative_url }}" alt="{{ t.diagram }}"></div>
+      {%- endif -%}
+
+      {%- if t.ongoing and t.ongoing.size > 0 -%}
+      <div>
+        <h3>Ongoing work</h3>
+        <ul>
+          {%- for o in t.ongoing -%}
+          <li class="row-ongoing">{{ o }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+
+      {%- comment -%}
+        Read straight out of _data/publications.yml: the entries whose
+        `selected` list names this area, newest first. Featuring a paper here
+        is one word in that file — there is no second list to keep in step.
+      {%- endcomment -%}
+      {%- assign area_pubs = site.data.publications | where_exp: "p", "p.selected contains t.key" -%}
+      {%- if area_pubs.size > 0 -%}
+      <div>
+        <h3>Selected work</h3>
+        <ul>
+          {%- for w in area_pubs -%}
+          <li class="row-work">
+            <span class="venue">{{ w.venue }} {{ w.year }}</span>
+            <a href="{{ '/publications/' | relative_url }}#{{ w.id }}">{{ w.title }}</a>
+          </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      {%- endif -%}
+    </div>
+  </article>
+  {%- endfor -%}
+</div>

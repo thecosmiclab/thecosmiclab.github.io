@@ -1,0 +1,14 @@
+{%- comment -%}
+  Emits the attributes that send a link to a new tab, but only for links that
+  leave the site. Internal paths, in-page anchors, mailto: and the `#`
+  placeholders are left alone — those should stay in the current tab.
+
+  Usage:  <a href="{{ l.href }}"{% include external.html href=l.href %}>…</a>
+
+  `rel="noopener"` is what keeps the opened page from reaching back through
+  window.opener.
+{%- endcomment -%}
+{%- assign h = include.href -%}
+{%- if h contains '://' -%}
+  {%- unless h contains site.url %} target="_blank" rel="noopener"{% endunless -%}
+{%- endif -%}

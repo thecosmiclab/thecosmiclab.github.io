@@ -1,0 +1,16 @@
+# Newest first. The homepage shows the first five and hides the rest behind
+# "Show earlier items". While this list is empty the News section is omitted.
+#
+# `label` is the short tag in the second column — Paper, Award, Talk, Lab, …
+- date: "Sep 01, 2026"
+  label: Lab
+  text: "Hyunwuk Lee joins the GIST Graduate School of Advanced Semiconductor Engineering as an Assistant Professor"
+- date: "Aug 06, 2026"
+  label: Paper
+  text: "SLGS accepted to PACT 2026"
+- date: "Aug 05, 2026"
+  label: Award
+  text: "SLICE (ISCA 2026) selected for the Samsung Industry-Academic Research Project Paper Award"
+- date: "Mar 28, 2026"
+  label: Paper
+  text: "Two papers accepted to ISCA 2026"

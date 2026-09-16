@@ -1,0 +1,578 @@
+/* ==========================================================================
+   COSMIC Lab — design tokens
+   Values resolved from the Wanted Design System bundle used by the handoff
+   prototype. The alias layer is kept so intent stays visible at each use site.
+   ========================================================================== */
+:root{
+  /* ramp */
+  --label-normal:rgb(23,23,23);
+  --label-neutral:rgba(46,47,51,0.88);
+  --label-alternative:rgba(55,56,60,0.61);
+  --dark-label-normal:rgb(247,247,247);
+  --dark-label-neutral:rgba(194,196,200,0.88);
+  --blue-80:rgb(158,197,255);
+  --blue-90:rgb(201,222,254);
+  --green-95:rgb(217,255,230);
+  --green-40:rgb(0,150,50);
+  --cool-neutral-98:rgb(244,244,245);
+
+  /* aliases */
+  --ink:var(--label-normal);
+  --prose:var(--label-neutral);
+  --slate:var(--label-alternative);
+  --link:rgb(51,102,255);
+  --link-strong:rgb(0,94,235);
+  --line:rgba(112,115,124,0.08);
+  --line-neutral:rgba(112,115,124,0.16);
+  --surface:rgba(112,115,124,0.05);
+  --fill-strong:rgba(112,115,124,0.16);
+  --brand-base:#0F2C59;
+  --brand:var(--brand-base);
+  --focus:color-mix(in srgb, rgb(51,102,255) 43%, transparent);
+  --bg:#fff;
+
+  /* on the brand-navy band */
+  --on-inv:var(--label-normal);
+  --on-inv-2:var(--label-neutral);
+  --on-inv-line:var(--line-neutral);
+  --on-inv-link:var(--blue-80);
+
+  /* status */
+  --ok:rgb(0,191,64);
+  --ok-tint:var(--green-95);
+  --ok-fg:var(--green-40);
+  --violet-fg:rgb(90,58,204);
+  --violet-tint:rgb(238,234,255);
+
+  /* scrims — hover/press paint a scrim, never a colour change */
+  --overlay:23,23,25;
+  --ov-light-hover:0.038;
+  --ov-light-focus:0.06;
+  --ov-light-press:0.09;
+  --ov-strong-hover:0.075;
+  --ov-strong-press:0.18;
+
+  /* motion */
+  --duration:200ms;
+  --duration-fast:120ms;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+
+  /* radius tracks height */
+  --r4:4px; --r6:6px; --r8:8px; --r10:10px; --r12:12px; --r20:20px; --rfull:9999px;
+  --shadow-overlay:0 0 12px 0 rgba(0,0,0,0.16);
+
+  --font-sans:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  /* Line length for full-width prose: the PI bio and the Join copy. */
+  --measure:78ch;
+  --gut:40px;
+  --container:1120px;
+  --header-h:64px;
+}
+
+/* The dark scope. The design-system dark ramp assumes a near-black surface;
+   on #0F2C59 the assistive rung falls below AA, so it collapses onto
+   label-neutral and links step up the blue ramp. */
+.dark{
+  --brand:var(--on-inv);
+  --bg:var(--brand-base);
+  --link:var(--blue-80);
+  --link-strong:var(--blue-90);
+  --on-inv:var(--dark-label-normal);
+  --on-inv-2:var(--dark-label-neutral);
+  --on-inv-line:rgba(112,115,124,0.28);
+  --on-inv-link:var(--blue-80);
+  color:var(--dark-label-normal);
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*{box-sizing:border-box}
+/* Elements toggled with el.hidden must stay hidden regardless of a display rule. */
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--font-sans);
+  font-size:16px;line-height:26px;letter-spacing:0.0057em;font-weight:500;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;display:flex;flex-direction:column;
+}
+h1,h2,h3,h4{margin:0;font-weight:700}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+a{color:var(--link);text-decoration:none}
+a:hover{color:var(--link-strong)}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+
+:where(a,button,[tabindex]:not([tabindex="-1"])):focus-visible{
+  outline:2px solid var(--focus);outline-offset:2px;border-radius:var(--r4);
+}
+[tabindex="-1"]:focus{outline:none}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:8px;top:-60px;z-index:200;background:var(--bg);color:var(--ink);
+  padding:10px 16px;border-radius:var(--r10);box-shadow:var(--shadow-overlay);
+  font-size:15px;line-height:22px;font-weight:600;transition:top var(--duration-fast) var(--ease)}
+.skip:focus{top:8px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    transition-duration:0.01ms!important;animation-duration:0.01ms!important;
+    animation-iteration-count:1!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
+.gut{max-width:var(--container);width:100%;margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+main{flex:1}
+
+/* Full-bleed neutral bar marking a section boundary. */
+.bar{height:8px;background:var(--cool-neutral-98);margin:64px calc(var(--gut) * -1) 40px}
+
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+  padding-bottom:12px;box-shadow:inset 0 -1px 0 var(--line)}
+.sec-head h2{font-size:22px;line-height:30px;font-weight:600;letter-spacing:-0.0194em;color:var(--ink)}
+
+/* Every edge in this design is an inner shadow — never a border, so it never
+   affects layout. */
+.frame{box-shadow:inset 0 0 0 1px var(--line-neutral)}
+.hair-b{box-shadow:inset 0 -1px 0 var(--line)}
+.hair-t{box-shadow:inset 0 1px 0 var(--line)}
+
+/* ==========================================================================
+   Type steps (19-step scale; only the used steps are named)
+   ========================================================================== */
+.t-40{font-size:40px;line-height:52px;letter-spacing:-0.0282em;font-weight:700}
+.t-32{font-size:32px;line-height:44px;letter-spacing:-0.0253em;font-weight:700}
+.t-28{font-size:28px;line-height:38px;letter-spacing:-0.0236em;font-weight:700}
+.t-24{font-size:24px;line-height:32px;letter-spacing:-0.023em;font-weight:700}
+.t-22{font-size:22px;line-height:30px;letter-spacing:-0.0194em;font-weight:600}
+.t-20{font-size:20px;line-height:28px;letter-spacing:-0.012em;font-weight:600}
+.t-18{font-size:18px;line-height:26px;letter-spacing:-0.002em;font-weight:600}
+.t-17{font-size:17px;line-height:24px;letter-spacing:0;font-weight:600}
+.t-16{font-size:16px;line-height:26px;letter-spacing:0.0057em;font-weight:500}
+.t-15{font-size:15px;line-height:22px;letter-spacing:0.0096em;font-weight:500}
+.t-15r{font-size:15px;line-height:24px;letter-spacing:0.0096em;font-weight:500}
+.t-14{font-size:14px;line-height:22px;letter-spacing:0.0145em;font-weight:500}
+.t-14a{font-size:14px;line-height:20px;letter-spacing:0.0145em;font-weight:600}
+.t-13{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:500}
+.t-13b{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600}
+.pretty{text-wrap:pretty}
+.c-ink{color:var(--ink)} .c-prose{color:var(--prose)} .c-slate{color:var(--slate)}
+
+/* ==========================================================================
+   Wordmark
+   The weight gap (700 / 500) carries the hierarchy, not a lightness drop —
+   a muted grey "Lab" on the dark band reads as disabled.
+   ========================================================================== */
+.wm{display:flex;align-items:center;gap:7px;text-decoration:none;color:inherit}
+.wm .mark{display:flex}
+.wm .cosmic{font-weight:700}
+.wm .lab{font-weight:500;margin-left:-3px}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.appbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--header-h);
+  display:flex;align-items:center;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  background:transparent;box-shadow:none;
+  transition:background var(--duration) var(--ease),box-shadow var(--duration) var(--ease);
+}
+.appbar .gut{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:0;padding-bottom:0}
+.appbar .wm{min-height:44px;font-size:18px;line-height:26px;font-weight:700;letter-spacing:-0.002em}
+
+/* over the hero */
+.appbar.is-over{color:var(--dark-label-normal)}
+.appbar.is-over .mark,.appbar.is-over .cosmic{color:var(--dark-label-normal)}
+.appbar.is-over .lab{color:var(--dark-label-neutral)}
+.appbar.is-over .nav a{color:var(--dark-label-neutral)}
+.appbar.is-over .nav a:hover{color:var(--dark-label-normal)}
+.appbar.is-over .nav a[aria-current="page"]{color:var(--dark-label-normal)}
+.appbar.is-over .nav a[aria-current="page"] .ul{background:var(--dark-label-normal)}
+.appbar.is-over .menu-btn{color:var(--dark-label-normal)}
+
+/* scrolled past the hero */
+.appbar.is-solid{background:rgba(255,255,255,0.86);box-shadow:inset 0 -1px 0 var(--line)}
+.appbar.is-solid .mark,.appbar.is-solid .cosmic{color:var(--brand-base)}
+.appbar.is-solid .lab{color:var(--slate)}
+.appbar.is-solid .nav a{color:var(--slate)}
+.appbar.is-solid .nav a:hover{color:var(--ink)}
+.appbar.is-solid .nav a[aria-current="page"]{color:var(--ink)}
+.appbar.is-solid .nav a[aria-current="page"] .ul{background:var(--ink)}
+.appbar.is-solid .menu-btn{color:var(--ink)}
+
+.nav ul{display:flex;gap:28px}
+.nav a{
+  position:relative;display:inline-block;padding:21px 0;
+  font-size:15px;line-height:22px;font-weight:600;letter-spacing:0.0096em;
+  white-space:nowrap;text-decoration:none;
+  transition:color var(--duration) var(--ease);
+}
+/* Black marks the current selection; blue marks an action. Never blue here. */
+/* The link keeps the full 64px bar as its hit area; only the marker moves up
+   to sit just under the label instead of on the header's bottom edge. */
+.nav a .ul{position:absolute;left:0;right:0;bottom:14px;height:2px}
+
+.menu-btn{display:none;align-items:center;justify-content:center;width:48px;height:48px;
+  margin-right:-12px;border-radius:var(--r12);transition:background var(--duration-fast) var(--ease)}
+.menu-btn:hover{background:rgba(var(--overlay),var(--ov-light-hover))}
+.menu-btn:active{background:rgba(var(--overlay),var(--ov-light-press))}
+
+/* ==========================================================================
+   Hero band
+   ========================================================================== */
+.hero{
+  background:linear-gradient(168deg,
+    color-mix(in srgb, var(--brand-base) 95%, #FFFFFF) 0%,
+    var(--brand-base) 58%);
+  padding-top:var(--header-h);
+}
+.hero .gut{display:flex;flex-direction:column;justify-content:flex-start;
+  padding-top:52px;padding-bottom:40px;min-height:248px}
+.hero h1{font-size:40px;line-height:52px;letter-spacing:-0.0282em;font-weight:700;color:var(--on-inv)}
+.hero .eyebrow{font-size:15px;line-height:22px;font-weight:600;letter-spacing:0.0096em;
+  color:var(--on-inv-2);margin-bottom:14px}
+.hero .lede{margin-top:16px;max-width:60ch;font-size:16px;line-height:26px;
+  letter-spacing:0.0057em;font-weight:500;color:var(--on-inv-2);text-wrap:pretty}
+.hero h1 .cosmic{color:var(--on-inv)}
+.hero h1 .lab{color:var(--on-inv-2);margin-left:4px;font-weight:500}
+.hero .sub{margin-top:8px;font-size:18px;line-height:26px;font-weight:500;
+  letter-spacing:-0.002em;color:var(--on-inv-2)}
+
+@media (min-width:720px){.hero .gut{height:248px}}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+/* Button */
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  border-radius:var(--r10);white-space:nowrap;text-decoration:none;
+  transition:background var(--duration-fast) var(--ease),color var(--duration-fast) var(--ease);
+}
+.btn-sm{height:32px;padding:0 12px;border-radius:var(--r8);font-size:14px;line-height:20px;letter-spacing:0.0145em;font-weight:600}
+.btn-md{height:40px;padding:0 16px;font-size:15px;line-height:22px;letter-spacing:0.0096em;font-weight:600}
+.btn-lg{height:48px;padding:0 20px;border-radius:var(--r12);font-size:16px;line-height:24px;font-weight:600}
+.btn-outlined{color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-neutral)}
+.btn-outlined:hover{background:rgba(var(--overlay),var(--ov-light-hover));color:var(--ink)}
+.btn-outlined:active{background:rgba(var(--overlay),var(--ov-light-press))}
+/* Solid CTA: the scrim rides over the fill, so the fill colour never changes. */
+.btn-solid{background:var(--link);color:#fff;overflow:hidden}
+.btn-solid:hover{color:#fff}
+.btn-solid::after{content:"";position:absolute;inset:0;background:rgba(var(--overlay),0);
+  transition:background var(--duration-fast) var(--ease);pointer-events:none}
+.btn-solid:hover::after{background:rgba(var(--overlay),var(--ov-strong-hover))}
+.btn-solid:active::after{background:rgba(var(--overlay),var(--ov-strong-press))}
+
+/* Chip */
+.chip{
+  display:inline-flex;align-items:center;height:32px;padding:0 12px;white-space:nowrap;
+  border-radius:var(--r8);font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;
+  color:var(--slate);box-shadow:inset 0 0 0 1px var(--line-neutral);
+  transition:background var(--duration-fast) var(--ease),color var(--duration-fast) var(--ease);
+}
+.chip:hover{background:rgba(var(--overlay),var(--ov-light-hover));color:var(--ink)}
+.chip:active{background:rgba(var(--overlay),var(--ov-light-press))}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none}
+.chip[aria-pressed="true"]:hover{color:#fff}
+.chip-md{height:40px;padding:0 14px;border-radius:var(--r10);font-size:14px;line-height:20px}
+
+/* ContentBadge */
+.badge{display:inline-flex;align-items:center;min-height:22px;padding:3px 8px;border-radius:var(--r6);
+  font-size:12px;line-height:16px;letter-spacing:0.0194em;font-weight:600}
+.badge-neutral{background:var(--surface);color:var(--slate)}
+.badge-violet{background:var(--violet-tint);color:var(--violet-fg)}
+
+/* Thumbnail — supplies its own 5% fill; do not stack another behind it. */
+.thumb{position:relative;width:100%;aspect-ratio:4/5;border-radius:var(--r12);
+  background:var(--surface);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb .initials{font-size:22px;line-height:30px;font-weight:600;letter-spacing:-0.0194em;color:var(--slate)}
+
+/* Bottom sheet */
+.sheet-dim{position:fixed;inset:0;z-index:1000;display:flex;align-items:flex-end;background:rgba(0,0,0,0.56)}
+.sheet{width:100%;max-width:560px;margin:0 auto;background:#fff;outline:none;
+  border-radius:var(--r20) var(--r20) 0 0;padding-bottom:20px;box-shadow:var(--shadow-overlay)}
+.sheet .grab{display:flex;justify-content:center;padding:8px 0 4px}
+.sheet .grab span{width:40px;height:4px;border-radius:var(--rfull);background:var(--fill-strong)}
+.sheet nav{padding:8px 8px 4px}
+.sheet nav a{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  min-height:52px;padding:0 12px;border-radius:var(--r10);
+  font-size:17px;line-height:24px;font-weight:600;color:var(--slate);text-decoration:none}
+.sheet nav a[aria-current="page"]{color:var(--ink)}
+.sheet nav a:active{background:rgba(var(--overlay),var(--ov-light-press))}
+.sheet nav a .dot{width:6px;height:6px;border-radius:var(--rfull);background:var(--ink)}
+
+/* ==========================================================================
+   Home
+   ========================================================================== */
+.band{margin:48px 0 0;padding:40px;border-radius:var(--r12)}
+.band .lead-h{font-size:32px;line-height:44px;letter-spacing:-0.0253em;font-weight:700;color:var(--ink);text-wrap:pretty}
+/* One measure for the whole card, so the headline and the paragraphs wrap on
+   the same line length instead of the paragraphs breaking earlier. */
+.band .stack{max-width:84ch;display:flex;flex-direction:column;gap:18px}
+.band p.body{font-size:16px;line-height:26px;letter-spacing:0.0057em;
+  font-weight:500;color:var(--prose);text-wrap:pretty}
+
+.home-body{padding-top:56px;padding-bottom:88px}
+
+/* News — the label column is deliberately prominent. */
+.row-news{display:grid;grid-template-columns:104px 76px 1fr;gap:12px;align-items:baseline;
+  padding:15px 0;box-shadow:inset 0 -1px 0 var(--line)}
+.row-news .date{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:500;
+  color:var(--slate);font-variant-numeric:tabular-nums}
+.row-news .label{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;color:var(--ink)}
+.row-news .text{font-size:15px;line-height:24px;letter-spacing:0.0096em;font-weight:500;color:var(--prose)}
+.news-more{margin-top:16px}
+
+.area-list li{box-shadow:inset 0 -1px 0 var(--line)}
+.area-list a{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;
+  padding:20px 12px;margin:0 -12px;border-radius:var(--r10);color:inherit;text-decoration:none;
+  transition:background var(--duration-fast) var(--ease)}
+.area-list a:hover{background:rgba(var(--overlay),var(--ov-light-hover));color:inherit}
+.area-list a:active{background:rgba(var(--overlay),var(--ov-light-press))}
+.area-list .t{font-size:18px;line-height:26px;font-weight:600;letter-spacing:-0.002em;color:var(--ink)}
+.area-list .d{font-size:14px;line-height:22px;letter-spacing:0.0145em;font-weight:500;color:var(--slate);text-wrap:pretty}
+.area-list .chev{display:flex;color:var(--slate)}
+
+/* ==========================================================================
+   Sticky sub-navigation (research areas, publication filters)
+   ========================================================================== */
+.subbar{position:sticky;top:var(--header-h);z-index:20;background:#fff;box-shadow:inset 0 -1px 0 var(--line)}
+.subbar nav{display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+.subbar nav::-webkit-scrollbar{display:none}
+.subbar nav a{position:relative;padding:14px 0;font-size:14px;line-height:20px;
+  letter-spacing:0.0145em;font-weight:600;white-space:nowrap;color:var(--slate);text-decoration:none}
+.subbar nav a.is-active{color:var(--ink)}
+/* Same treatment as the header: the tab keeps its full height as the hit area,
+   the marker sits just under the label. */
+.subbar nav a .ul{position:absolute;left:0;right:0;bottom:7px;height:2px;background:var(--ink)}
+
+/* ==========================================================================
+   Research
+   ========================================================================== */
+.grid-research{display:grid;grid-template-columns:1fr 400px;gap:56px;padding:48px 0;
+  scroll-margin-top:calc(var(--sticky-offset, 120px) + 12px);box-shadow:inset 0 -1px 0 var(--line)}
+.grid-research .prose-col p{font-size:16px;line-height:26px;letter-spacing:0.0057em;
+  font-weight:500;color:var(--prose);text-wrap:pretty}
+.grid-research .prose-col .lead{font-weight:600;color:var(--ink)}
+.grid-research .body-stack{margin-top:18px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.side{display:flex;flex-direction:column;gap:28px}
+.diagram{height:150px;border-radius:var(--r12);background:var(--surface);
+  box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:16px;font-size:13px;line-height:18px;letter-spacing:0.0194em;
+  font-weight:500;color:var(--slate)}
+/* With a real figure the frame gives up its fixed height, so a diagram is
+   never cropped — it keeps its own aspect ratio inside the same rounded box. */
+.diagram.has-figure{height:auto;padding:0;overflow:hidden}
+.diagram.has-figure img{width:100%;height:auto;display:block}
+.side h3{font-size:13px;line-height:18px;font-weight:600;letter-spacing:0.0194em;
+  color:var(--slate);padding-bottom:10px;box-shadow:inset 0 -1px 0 var(--line)}
+/* Ongoing work rows carry no status label — the text alone reads better. */
+.row-ongoing{padding:11px 0;box-shadow:inset 0 -1px 0 var(--line);
+  font-size:14px;line-height:22px;letter-spacing:0.0145em;font-weight:500;color:var(--prose);text-wrap:pretty}
+.row-work{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:baseline;
+  padding:11px 0;box-shadow:inset 0 -1px 0 var(--line)}
+.row-work .venue{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;color:var(--slate)}
+.row-work a{font-size:14px;line-height:22px;letter-spacing:0.0145em;font-weight:500;text-wrap:pretty}
+
+/* ==========================================================================
+   Publications
+   ========================================================================== */
+.chiprows{display:flex;flex-direction:column;gap:8px;padding:14px 0}
+.chiprow{display:grid;grid-template-columns:56px 1fr;gap:6px;align-items:start}
+.chiprow .facet{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;
+  color:var(--slate);padding-top:7px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.filterbar-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.export{flex:none;padding-top:14px;font-size:14px;line-height:20px;letter-spacing:0.0145em;font-weight:600}
+.filter-btn{display:none}
+
+/* A deep-linked entry has to clear the fixed header and the sticky filter bar,
+   and the bar changes height whenever the chips wrap — so the offset is
+   measured at runtime into --sticky-offset rather than assumed here. */
+.grid-pub{display:grid;grid-template-columns:104px 1fr;gap:24px;padding:24px 0;
+  scroll-margin-top:calc(var(--sticky-offset, 120px) + 12px);box-shadow:inset 0 -1px 0 var(--line)}
+/* The entry a deep link pointed at, so it is obvious which one you followed.
+   Same scrim the interactive rows use, inset the same 12px. */
+.grid-pub:target{background:rgba(var(--overlay),var(--ov-light-hover));
+  border-radius:var(--r10);padding-left:12px;padding-right:12px;
+  margin-left:-12px;margin-right:-12px}
+.grid-pub .venue{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;color:var(--slate)}
+.grid-pub .title{font-size:17px;line-height:26px;letter-spacing:0;font-weight:600;color:var(--ink);text-wrap:pretty}
+.grid-pub .authors{margin-top:6px;font-size:14px;line-height:22px;letter-spacing:0.0145em;
+  font-weight:500;color:var(--prose)}
+.grid-pub .authors .me{font-weight:700;color:var(--ink)}
+.grid-pub .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.grid-pub .links{display:flex;flex-wrap:wrap;gap:14px}
+.grid-pub .links a{font-size:14px;line-height:20px;letter-spacing:0.0145em;font-weight:600}
+/* A publication's own BibTeX, revealed in place. Mono is right here — it is a
+   code specimen, the same reason the Join page's email template uses it. */
+.grid-pub .links button{font-size:14px;line-height:20px;letter-spacing:0.0145em;
+  font-weight:600;color:var(--link);transition:color var(--duration-fast) var(--ease)}
+.grid-pub .links button:hover{color:var(--link-strong)}
+.grid-pub .links button[aria-expanded="true"]{color:var(--ink)}
+.bibblock{position:relative;margin-top:12px;padding:16px 18px;border-radius:var(--r12);
+  background:var(--surface);max-width:80ch}
+.bibblock pre{margin:0;font-family:var(--font-mono);font-size:12px;line-height:20px;
+  color:var(--prose);white-space:pre-wrap;word-break:break-word}
+.bibblock .copy{position:absolute;top:10px;right:10px;background:var(--bg)}
+
+.pub-empty{text-align:center;padding:48px 20px}
+.pub-empty .t{font-size:17px;line-height:24px;font-weight:600;color:var(--ink)}
+.pub-empty .d{margin-top:6px;font-size:14px;line-height:22px;letter-spacing:0.0145em;color:var(--slate)}
+.pub-empty .btn{margin-top:20px}
+
+/* ==========================================================================
+   People
+   ========================================================================== */
+.grid-pi{display:grid;grid-template-columns:200px 1fr;gap:40px;padding:48px 0 0}
+.grid-pi .name{font-size:28px;line-height:38px;letter-spacing:-0.0236em;font-weight:700;color:var(--ink)}
+.grid-pi .affil{margin-top:4px;font-size:15px;line-height:22px;letter-spacing:0.0096em;font-weight:600;color:var(--slate)}
+.grid-pi .bio{margin-top:16px;max-width:var(--measure);font-size:16px;line-height:26px;
+  letter-spacing:0.0057em;font-weight:500;color:var(--prose);text-wrap:pretty}
+.linkrow{margin-top:16px;display:flex;flex-wrap:wrap;gap:16px}
+.linkrow a{font-size:14px;line-height:20px;letter-spacing:0.0145em;font-weight:600}
+
+.grid-members{display:grid;grid-template-columns:repeat(4,1fr);gap:32px 24px}
+.member .name{margin-top:12px;font-size:17px;line-height:24px;font-weight:600;color:var(--ink)}
+.member .korean{font-size:14px;line-height:22px;letter-spacing:0.0145em;font-weight:500;color:var(--slate)}
+.member .role{margin-top:6px;font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:500;color:var(--slate)}
+.member .focus{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:500;color:var(--slate)}
+.member .linkrow{margin-top:10px;gap:12px}
+
+.row-alumni{display:grid;grid-template-columns:200px 1fr 220px;gap:16px;align-items:baseline;
+  padding:14px 0;box-shadow:inset 0 -1px 0 var(--line)}
+.row-alumni .name{font-size:15px;line-height:22px;letter-spacing:0.0096em;font-weight:600;color:var(--ink)}
+.row-alumni .deg,.row-alumni .now{font-size:14px;line-height:22px;letter-spacing:0.0145em;
+  font-weight:500;color:var(--slate)}
+
+/* ==========================================================================
+   Projects
+   ========================================================================== */
+.grid-project{display:grid;grid-template-columns:1fr 260px;gap:32px;padding:24px 0;
+  box-shadow:inset 0 -1px 0 var(--line)}
+.grid-project .name{font-size:18px;line-height:26px;letter-spacing:-0.002em;font-weight:600;
+  color:var(--ink);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.grid-project .desc{margin-top:8px;max-width:62ch;font-size:15px;line-height:24px;
+  letter-spacing:0.0096em;font-weight:500;color:var(--prose);text-wrap:pretty}
+.grid-project .meta{margin-top:8px;font-size:13px;line-height:18px;letter-spacing:0.0194em;
+  font-weight:500;color:var(--slate)}
+.row-archive{display:grid;grid-template-columns:220px 1fr 200px;gap:16px;align-items:baseline;
+  padding:14px 0;box-shadow:inset 0 -1px 0 var(--line)}
+
+/* ==========================================================================
+   Join
+   ========================================================================== */
+.statusbanner{display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:24px 28px;border-radius:var(--r12);margin:48px 0 0}
+.statusbanner.is-open{background:var(--ok-tint)}
+.statusbanner.is-closed{background:var(--surface)}
+.statusbanner .status-label{display:flex;align-items:center;gap:8px;
+  font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600}
+.statusbanner.is-open .status-label{color:var(--ok-fg)}
+.statusbanner.is-closed .status-label{color:var(--slate)}
+.statusbanner .dot{flex:none;width:8px;height:8px;border-radius:var(--rfull)}
+.statusbanner.is-open .dot{background:var(--ok)}
+.statusbanner.is-closed .dot{background:var(--slate)}
+.statusbanner .t{margin-top:10px;font-size:20px;line-height:28px;letter-spacing:-0.012em;
+  font-weight:600;color:var(--ink)}
+.statusbanner .d{margin-top:4px;font-size:15px;line-height:24px;letter-spacing:0.0096em;
+  font-weight:500;color:var(--prose);text-wrap:pretty;max-width:62ch}
+/* The CTA is 40px tall with a wider inset than the generic medium button. */
+.cta{flex:none;height:40px;padding:0 20px;border-radius:var(--r10);
+  font-size:15px;line-height:22px;letter-spacing:0.0096em;font-weight:600}
+
+
+/* The list/ul reset strips markers site-wide; this list reads as a checklist. */
+.bullets{list-style:disc;padding-left:1.25em;display:flex;flex-direction:column;gap:4px}
+.bullets li::marker{color:var(--slate)}
+
+/* FAQ rows follow the Home page's Research list: full width, the hairline on
+   the item, the trailing icon on the section's right edge, and a scrim on
+   hover that bleeds 12px past the text on both sides. */
+.faq > div{box-shadow:inset 0 -1px 0 var(--line)}
+.faq h3{margin:0}
+.faq button{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  width:calc(100% + 24px);margin:0 -12px;padding:20px 12px;border-radius:var(--r10);
+  text-align:left;font-size:18px;line-height:26px;font-weight:600;letter-spacing:-0.002em;
+  color:var(--ink);transition:background var(--duration-fast) var(--ease)}
+.faq button:hover{background:rgba(var(--overlay),var(--ov-light-hover))}
+.faq button:active{background:rgba(var(--overlay),var(--ov-light-press))}
+.faq button .ic{display:flex;color:var(--slate);flex:none}
+.faq .panel{padding:0 0 24px;max-width:var(--measure);font-size:15px;line-height:24px;
+  letter-spacing:0.0096em;font-weight:500;color:var(--prose);text-wrap:pretty}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.foot{background:var(--brand-base);padding:56px 0 48px;margin-top:0}
+.foot .wm{font-size:17px;line-height:24px;font-weight:700;letter-spacing:0}
+.foot .cosmic{color:var(--on-inv)} .foot .lab{color:var(--on-inv-2)} .foot .mark{color:var(--on-inv)}
+.foot .cols{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:start}
+.foot .contact{margin-top:14px;font-size:14px;line-height:22px;letter-spacing:0.0145em;
+  font-weight:500;color:var(--on-inv-2)}
+.foot .contact a{color:var(--on-inv-link)}
+.foot nav ul{display:flex;flex-wrap:wrap;gap:20px}
+.foot nav a{font-size:14px;line-height:20px;letter-spacing:0.0145em;font-weight:600;color:var(--on-inv-2)}
+.foot nav a:hover{color:var(--on-inv)}
+.foot .recruit{margin-top:28px;padding-top:20px;box-shadow:inset 0 1px 0 var(--on-inv-line);
+  font-size:14px;line-height:22px;letter-spacing:0.0145em;font-weight:500;color:var(--on-inv-2)}
+
+/* ==========================================================================
+   Responsive — 720px desktop/mobile, 480px small phone
+   ========================================================================== */
+@media (max-width:719px){
+  :root{--gut:20px}
+  .bar{margin:48px calc(var(--gut) * -1) 32px}
+  .band{margin:32px 0 0;padding:24px}
+  /* Static above the hero, and always the dark treatment — the navy simply
+     continues into the band below it. */
+  .appbar{position:static;backdrop-filter:none;-webkit-backdrop-filter:none;
+    background:var(--brand-base);box-shadow:none}
+  .hero{padding-top:0}
+  .hero .gut{min-height:0;height:auto;padding-top:32px;padding-bottom:32px}
+  .hero h1{font-size:32px;line-height:44px;letter-spacing:-0.0253em}
+  .band .lead-h{font-size:24px;line-height:32px;letter-spacing:-0.023em}
+  .nav{display:none}
+  .menu-btn{display:inline-flex}
+  .chiprows{display:none}
+  .filter-btn{display:flex}
+  .filterbar-inner{padding-top:12px;padding-bottom:12px}
+  .subbar{top:0}
+  .row-news{grid-template-columns:auto 1fr;gap:4px 12px}
+  .row-news .text{grid-column:1 / -1}
+  .grid-research{grid-template-columns:1fr;gap:24px;padding:32px 0}
+  .row-work{grid-template-columns:1fr;gap:2px}
+  .grid-pub{grid-template-columns:1fr;gap:8px}
+  .grid-pi{grid-template-columns:1fr;gap:20px}
+  .grid-pi > :first-child{max-width:160px}
+  .grid-members{grid-template-columns:repeat(2,1fr);gap:24px 16px}
+  .row-alumni,.grid-project,.row-archive{grid-template-columns:1fr;gap:6px}
+  .statusbanner{padding:20px;gap:16px;flex-direction:column;align-items:flex-start}
+  .foot .cols{grid-template-columns:1fr;gap:28px}
+  /* Every interactive element clears 44px on touch. */
+  .tap,.linkrow a,.row-work a,.grid-pub .links a,.foot nav a,.gut a[href^="mailto:"]{
+    display:inline-flex;align-items:center;min-height:44px}
+}
+@media (max-width:479px){
+  :root{--gut:16px}
+  .bar{margin:32px calc(var(--gut) * -1) 24px}
+  .band{padding:20px}
+  .grid-members{grid-template-columns:1fr}
+  .hero h1{font-size:28px;line-height:38px;letter-spacing:-0.0236em}
+}
+@media print{
+  .appbar,.subbar,.print-hide{display:none!important}
+  body{font-size:11pt}
+  .hero{background:none;padding-top:0}
+  .hero h1,.hero .lede,.hero .sub,.hero .eyebrow{color:#000}
+}

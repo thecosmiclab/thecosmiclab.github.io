@@ -1,0 +1,723 @@
+# The PI's publications and patents, newest first. Papers and patents are
+# interleaved strictly by date rather than grouped by kind. Entries sharing a
+# venue and year — two papers at the same conference — are ordered
+# alphabetically by title, since there is no date between them.
+#
+# THE FILE ORDER IS THE PAGE ORDER. A new entry goes at the top; nothing sorts
+# it for you.
+#
+# Sources: the PI's own publications page and CV (which entries, links, awards,
+# and the * marking co-first authorship), DBLP for full author lists, Google
+# Patents for inventors and grant dates.
+#
+# `thrust` entries must match a `key` in _data/thrusts.yml — that one
+# vocabulary drives the Area filter. An empty list means the entry shows under
+# "All" but under no single area.
+#
+# `selected` is the ONE area this entry is featured under on the Research
+# page's "Selected work" list. Two rules:
+#   - it must be one of this entry's own `thrust` values, or the paper is
+#     featured in an area its own filter does not place it in;
+#   - at most one area, so no paper appears twice across the four panels.
+# An empty list is the right default for most entries — the point of the list
+# is that it is short.
+#
+# `type` is one of: conference, journal, chapter, patent, workshop, preprint.
+# It is what the Type filter is built from, so a new value creates a new chip.
+#
+# Mark the PI with `me: true` and the name is bolded.
+#
+# `bibtex` is the record the Export BibTeX link hands out verbatim. Papers use
+# DBLP's official entry (DBLP bookkeeping fields removed, citation key
+# rewritten to firstauthor+year+shortname); the PACT 2026 paper and the three
+# patents are not in DBLP, so those entries are written by hand.
+# Without this field the exporter falls back to a bare generated stub, so keep
+# it filled in for new entries.
+
+- id: p-slgs
+  venue: PACT
+  year: 2026
+  type: conference
+  thrust: [co-design, micro]
+  selected: []
+  title: "SLGS: A Structure-Aware Scanline Renderer for Efficient 3D Gaussian Splatting"
+  authors:
+    - { name: "Seunghyun Lee" }
+    - { name: "Mingu Jung" }
+    - { name: "Sungwoo Kim" }
+    - { name: "Sungbin Kim" }
+    - { name: "Dongho Ha" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Yingyan (Celine) Lin" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: ["To appear"]
+  links: []
+  bibtex: |
+    @inproceedings{lee2026slgs,
+      author       = {Seunghyun Lee and
+                      Mingu Jung and
+                      Sungwoo Kim and
+                      Sungbin Kim and
+                      Dongho Ha and
+                      Hyunwuk Lee and
+                      Yingyan Celine Lin and
+                      Won Woo Ro},
+      title        = {{SLGS:} A Structure-Aware Scanline Renderer for Efficient 3D Gaussian
+                      Splatting},
+      booktitle    = {Proceedings of the International Conference on Parallel Architectures
+                      and Compilation Techniques, {PACT} 2026},
+      year         = {2026},
+      note         = {To appear}
+    }
+
+- id: p-mxffp
+  venue: ISCA
+  year: 2026
+  type: conference
+  thrust: [co-design, micro]
+  selected: [co-design]
+  title: "MXFFP: Microscaling Flexible Floating Point Format for Large-Scale AI Model Acceleration"
+  authors:
+    - { name: "Sungwoo Kim" }
+    - { name: "Sungbin Kim" }
+    - { name: "Dongho Ha" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Junsung Kim" }
+    - { name: "Seunghyun Lee" }
+    - { name: "Mingu Jung" }
+    - { name: "Murali Annavaram" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: DOI, href: "https://doi.org/10.1109/ISCA66397.2026.00175" }
+  bibtex: |
+    @inproceedings{kim2026mxffp,
+      author       = {Sungwoo Kim and
+                      Sungbin Kim and
+                      Dongho Ha and
+                      Hyunwuk Lee and
+                      Junsung Kim and
+                      Seunghyun Lee and
+                      Mingu Jung and
+                      Murali Annavaram and
+                      Won Woo Ro},
+      title        = {{MXFFP:} Microscaling Flexible Floating Point Format for Large-Scale
+                      {AI} Model Acceleration},
+      booktitle    = {53rd {ACM/IEEE} Annual International Symposium on Computer Architecture,
+                      {ISCA} 2026, Raleigh, NC, USA, June 27 - July 1, 2026},
+      pages        = {2505--2519},
+      publisher    = {{IEEE}},
+      year         = {2026},
+      url          = {https://doi.org/10.1109/ISCA66397.2026.00175},
+      doi          = {10.1109/ISCA66397.2026.00175}
+    }
+
+- id: p-slice
+  venue: ISCA
+  year: 2026
+  type: conference
+  thrust: [on-device, co-design]
+  selected: [on-device]
+  title: "SLICE: A Selective Local Inference Framework with Codec Exploitation for Accelerating Video Super-Resolution"
+  authors:
+    - { name: "Mingu Jung" }
+    - { name: "Sungbin Kim" }
+    - { name: "Seunghyun Lee" }
+    - { name: "Seunghyun Jin" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Won Woo Ro" }
+  awards: ["Samsung Industry-Academic Research Project Paper Award"]
+  labels: []
+  links:
+    - { label: DOI, href: "https://doi.org/10.1109/ISCA66397.2026.00134" }
+  bibtex: |
+    @inproceedings{jung2026slice,
+      author       = {Mingu Jung and
+                      Sungbin Kim and
+                      Seunghyun Lee and
+                      Seunghyun Jin and
+                      Hyunwuk Lee and
+                      Won Woo Ro},
+      title        = {Slice: {A} Selective Local Inference Framework with Codec Exploitation
+                      for Accelerating Video Super-Resolution},
+      booktitle    = {53rd {ACM/IEEE} Annual International Symposium on Computer Architecture,
+                      {ISCA} 2026, Raleigh, NC, USA, June 27 - July 1, 2026},
+      pages        = {1863--1877},
+      publisher    = {{IEEE}},
+      year         = {2026},
+      url          = {https://doi.org/10.1109/ISCA66397.2026.00134},
+      doi          = {10.1109/ISCA66397.2026.00134}
+    }
+
+- id: p-despa
+  venue: JSA
+  year: 2026
+  type: journal
+  thrust: [co-design, micro]
+  selected: []
+  title: "DeSpa: Heterogeneous multi-core accelerators for energy-efficient dense and sparse computation at the tile level in Deep Neural Networks"
+  authors:
+    - { name: "Hyungjun Jang" }
+    - { name: "Dongho Ha" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://www.sciencedirect.com/science/article/pii/S1383762125003224" }
+    - { label: DOI, href: "https://doi.org/10.1016/j.sysarc.2025.103650" }
+  bibtex: |
+    @article{jang2026despa,
+      author       = {Hyungjun Jang and
+                      Dongho Ha and
+                      Hyunwuk Lee and
+                      Won Woo Ro},
+      title        = {DeSpa: Heterogeneous multi-core accelerators for energy-efficient
+                      dense and sparse computation at the tile level in Deep Neural Networks},
+      journal      = {J. Syst. Archit.},
+      volume       = {172},
+      pages        = {103650},
+      year         = {2026},
+      url          = {https://doi.org/10.1016/j.sysarc.2025.103650},
+      doi          = {10.1016/J.SYSARC.2025.103650}
+    }
+
+- id: p-bitl
+  venue: MICRO
+  year: 2025
+  type: conference
+  thrust: [micro, co-design]
+  selected: [co-design]
+  title: "BitL: A Hybrid Bit-Serial and Parallel Deep Learning Accelerator for Critical Path Reduction"
+  authors:
+    - { name: "Seunghyun Lee" }
+    - { name: "Dongho Ha" }
+    - { name: "Sungbin Kim" }
+    - { name: "Sungwoo Kim" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://dl.acm.org/doi/full/10.1145/3725843.3756044" }
+    - { label: DOI, href: "https://doi.org/10.1145/3725843.3756044" }
+  bibtex: |
+    @inproceedings{lee2025bitl,
+      author       = {Seunghyun Lee and
+                      Dongho Ha and
+                      Sungbin Kim and
+                      Sungwoo Kim and
+                      Hyunwuk Lee and
+                      Won Woo Ro},
+      title        = {BitL: {A} Hybrid Bit-Serial and Parallel Deep Learning Accelerator
+                      for Critical Path Reduction},
+      booktitle    = {Proceedings of the 58th {IEEE/ACM} International Symposium on Microarchitecture,
+                      {MICRO} 2025, Seoul, Republic of Korea, October 18-22, 2025},
+      pages        = {1565--1578},
+      publisher    = {{ACM}},
+      year         = {2025},
+      url          = {https://doi.org/10.1145/3725843.3756044},
+      doi          = {10.1145/3725843.3756044}
+    }
+
+- id: p-pat-mmu
+  venue: US Patent
+  year: 2025
+  type: patent
+  thrust: []
+  selected: []
+  title: "Memory management unit and method of walking page table (US 12,450,164)"
+  authors:
+    - { name: "Jiwon Lee" }
+    - { name: "Won Woo Ro" }
+    - { name: "Ipoom Jeong" }
+    - { name: "Hongju Kal" }
+    - { name: "Gun Ko" }
+    - { name: "Hyunwuk Lee", me: true }
+  awards: []
+  labels: []
+  links:
+    - { label: Patent, href: "https://patents.google.com/patent/US12450164B2/en" }
+  bibtex: |
+    @misc{lee2025mmu,
+      author       = {Jiwon Lee and
+                      Won Woo Ro and
+                      Ipoom Jeong and
+                      Hongju Kal and
+                      Gun Ko and
+                      Hyunwuk Lee},
+      title        = {Memory management unit and method of walking page table},
+      howpublished = {U.S. Patent 12,450,164},
+      year         = {2025},
+      month        = oct,
+      url          = {https://patents.google.com/patent/US12450164B2/en}
+    }
+
+- id: p-advpurif
+  venue: ICCV
+  year: 2025
+  type: conference
+  thrust: [ai-algorithm]
+  selected: []
+  title: "Adversarial Purification via Super-Resolution and Diffusion"
+  authors:
+    - { name: "Mincheol Park" }
+    - { name: "Cheonjun Park" }
+    - { name: "Seungseop Lim" }
+    - { name: "Mijin Koo" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Won Woo Ro" }
+    - { name: "Suhyun Kim" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://openaccess.thecvf.com/content/ICCV2025/html/Park_Adversarial_Purification_via_Super-Resolution_and_Diffusion_ICCV_2025_paper.html" }
+  bibtex: |
+    @inproceedings{park2025adversarial,
+      author       = {Mincheol Park and
+                      Cheonjun Park and
+                      Seungseop Lim and
+                      Mijin Koo and
+                      Hyunwuk Lee and
+                      Won Woo Ro and
+                      Suhyun Kim},
+      title        = {Adversarial Purification via Super-Resolution and Diffusion},
+      booktitle    = {{IEEE/CVF} International Conference on Computer Vision, {ICCV} 2025,
+                      Honolulu, HI, USA, October 19-25, 2025},
+      pages        = {4605--4615},
+      publisher    = {{IEEE}},
+      year         = {2025},
+      url          = {https://doi.org/10.1109/ICCV51701.2025.00438},
+      doi          = {10.1109/ICCV51701.2025.00438}
+    }
+
+- id: p-cvmax
+  venue: DAC
+  year: 2025
+  type: conference
+  thrust: [micro, co-design]
+  selected: [micro]
+  title: "CVMAX: Accelerator Architecture with Polar Form Multiplication for Complex-Valued Neural Networks"
+  authors:
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Sungbin Kim" }
+    - { name: "Sungwoo Kim" }
+    - { name: "Won Woo Ro" }
+  awards: ["Samsung Industry-Academic Research Project Paper Award"]
+  labels: []
+  links:
+    - { label: Paper, href: "https://ieeexplore.ieee.org/abstract/document/11133125" }
+    - { label: DOI, href: "https://doi.org/10.1109/DAC63849.2025.11133125" }
+  bibtex: |
+    @inproceedings{lee2025cvmax,
+      author       = {Hyunwuk Lee and
+                      Sungbin Kim and
+                      Sungwoo Kim and
+                      Won Woo Ro},
+      title        = {{CVMAX:} Accelerator Architecture with Polar Form Multiplication for
+                      Complex-Valued Neural Networks},
+      booktitle    = {62nd {ACM/IEEE} Design Automation Conference, {DAC} 2025, San Francisco,
+                      CA, USA, June 22-25, 2025},
+      pages        = {1--7},
+      publisher    = {{IEEE}},
+      year         = {2025},
+      url          = {https://doi.org/10.1109/DAC63849.2025.11133125},
+      doi          = {10.1109/DAC63849.2025.11133125}
+    }
+
+- id: p-pat-reg
+  venue: "US Patent"
+  year: 2025
+  type: patent
+  thrust: []
+  selected: []
+  title: "Apparatus and method with register sharing (US 12,298,901)"
+  authors:
+    - { name: "Won Woo Ro" }
+    - { name: "Seunghyun Jin" }
+    - { name: "Jonghyun Lee" }
+    - { name: "Hyunwuk Lee", me: true }
+  awards: []
+  labels: []
+  links:
+    - { label: Patent, href: "https://patents.google.com/patent/US12298901B2/en" }
+  bibtex: |
+    @misc{ro2025regsharing,
+      author       = {Won Woo Ro and
+                      Seunghyun Jin and
+                      Jonghyun Lee and
+                      Hyunwuk Lee},
+      title        = {Apparatus and method with register sharing},
+      howpublished = {U.S. Patent 12,298,901},
+      year         = {2025},
+      month        = may,
+      url          = {https://patents.google.com/patent/US12298901B2/en}
+    }
+
+- id: p-cosmos
+  venue: ISPASS
+  year: 2025
+  type: conference
+  thrust: [system, micro]
+  selected: [system]
+  title: "COSMOS: An LLC Contention Slowdown Model for Heterogeneous Multi-Core Systems"
+  authors:
+    - { name: "Yongju Lee" }
+    - { name: "Jaewon Kwon" }
+    - { name: "Cheolhwan Kim" }
+    - { name: "Enhyeok Jang" }
+    - { name: "Jiwon Lee" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://ieeexplore.ieee.org/abstract/document/11096128" }
+    - { label: DOI, href: "https://doi.org/10.1109/ISPASS64960.2025.00032" }
+  bibtex: |
+    @inproceedings{lee2025cosmos,
+      author       = {Yongju Lee and
+                      Jaewon Kwon and
+                      Cheolhwan Kim and
+                      Enhyeok Jang and
+                      Jiwon Lee and
+                      Hyunwuk Lee and
+                      Won Woo Ro},
+      title        = {{COSMOS:} An {LLC} Contention Slowdown Model for Heterogeneous Multi-Core
+                      Systems},
+      booktitle    = {{IEEE} International Symposium on Performance Analysis of Systems
+                      and Software, {ISPASS} 2025, Ghent, Belgium, May 11-13, 2025},
+      pages        = {264--275},
+      publisher    = {{IEEE}},
+      year         = {2025},
+      url          = {https://doi.org/10.1109/ISPASS64960.2025.00032},
+      doi          = {10.1109/ISPASS64960.2025.00032}
+    }
+
+- id: p-ditto
+  venue: HPCA
+  year: 2025
+  type: conference
+  thrust: [co-design, micro]
+  selected: [co-design]
+  title: "Ditto: Accelerating Diffusion Model via Temporal Value Similarity"
+  authors:
+    - { name: "Sungbin Kim*" }
+    - { name: "Hyunwuk Lee*", me: true }
+    - { name: "Wonho Cho" }
+    - { name: "Mincheol Park" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: arXiv, href: "https://arxiv.org/abs/2501.11211" }
+    - { label: Paper, href: "https://ieeexplore.ieee.org/abstract/document/10946815" }
+    - { label: DOI, href: "https://doi.org/10.1109/HPCA61900.2025.00035" }
+  bibtex: |
+    @inproceedings{kim2025ditto,
+      author       = {Sungbin Kim and
+                      Hyunwuk Lee and
+                      Wonho Cho and
+                      Mincheol Park and
+                      Won Woo Ro},
+      title        = {Ditto: Accelerating Diffusion Model via Temporal Value Similarity},
+      booktitle    = {{IEEE} International Symposium on High Performance Computer Architecture,
+                      {HPCA} 2025, Las Vegas, NV, USA, March 1-5, 2025},
+      pages        = {338--352},
+      publisher    = {{IEEE}},
+      year         = {2025},
+      url          = {https://doi.org/10.1109/HPCA61900.2025.00035},
+      doi          = {10.1109/HPCA61900.2025.00035}
+    }
+
+- id: p-rec
+  venue: JSA
+  year: 2025
+  type: journal
+  thrust: [system, micro]
+  selected: []
+  title: "REC: Enhancing fine-grained cache coherence protocol in multi-GPU systems"
+  authors:
+    - { name: "Gun Ko" }
+    - { name: "Jiwon Lee" }
+    - { name: "Hongju Kal" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://www.sciencedirect.com/science/article/pii/S1383762125000116" }
+    - { label: DOI, href: "https://doi.org/10.1016/j.sysarc.2025.103339" }
+  bibtex: |
+    @article{ko2025rec,
+      author       = {Gun Ko and
+                      Jiwon Lee and
+                      Hongju Kal and
+                      Hyunwuk Lee and
+                      Won Woo Ro},
+      title        = {{REC:} Enhancing fine-grained cache coherence protocol in multi-GPU
+                      systems},
+      journal      = {J. Syst. Archit.},
+      volume       = {160},
+      pages        = {103339},
+      year         = {2025},
+      url          = {https://doi.org/10.1016/j.sysarc.2025.103339},
+      doi          = {10.1016/J.SYSARC.2025.103339}
+    }
+
+- id: p-airgun
+  venue: ICCD
+  year: 2024
+  type: conference
+  thrust: [co-design]
+  selected: []
+  title: "AirGun: Adaptive Granularity Quantization for Accelerating Large Language Models"
+  authors:
+    - { name: "Sungbin Kim" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Sungwoo Kim" }
+    - { name: "Cheolhwan Kim" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://ieeexplore.ieee.org/abstract/document/10818069" }
+    - { label: DOI, href: "https://doi.org/10.1109/ICCD63220.2024.00103" }
+  bibtex: |
+    @inproceedings{kim2024airgun,
+      author       = {Sungbin Kim and
+                      Hyunwuk Lee and
+                      Sungwoo Kim and
+                      Cheolhwan Kim and
+                      Won Woo Ro},
+      title        = {AirGun: Adaptive Granularity Quantization for Accelerating Large Language
+                      Models},
+      booktitle    = {42nd {IEEE} International Conference on Computer Design, {ICCD} 2024,
+                      Milan, Italy, November 18-20, 2024},
+      pages        = {645--652},
+      publisher    = {{IEEE}},
+      year         = {2024},
+      url          = {https://doi.org/10.1109/ICCD63220.2024.00103},
+      doi          = {10.1109/ICCD63220.2024.00103}
+    }
+
+- id: p-gumso
+  venue: ISLPED
+  year: 2024
+  type: conference
+  thrust: [micro]
+  selected: []
+  title: "GUMSO: Gating Unnecessary On-Chip Memory Slices for Power Optimization on GPUs"
+  authors:
+    - { name: "Seunghyun Jin" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://dl.acm.org/doi/10.1145/3665314.3670800" }
+    - { label: DOI, href: "https://doi.org/10.1145/3665314.3670800" }
+  bibtex: |
+    @inproceedings{jin2024gumso,
+      author       = {Seunghyun Jin and
+                      Hyunwuk Lee and
+                      Won Woo Ro},
+      editor       = {Pascal Meinerzhagen and
+                      Kapil Dev and
+                      Jerald Yoo},
+      title        = {{GUMSO:} Gating Unnecessary On-Chip Memory Slices for Power Optimization
+                      on GPUs},
+      booktitle    = {Proceedings of the 29th {ACM/IEEE} International Symposium on Low
+                      Power Electronics and Design, {ISLPED} 2024, Newport Beach, CA, USA,
+                      August 5-7, 2024},
+      pages        = {1--6},
+      publisher    = {{ACM}},
+      year         = {2024},
+      url          = {https://doi.org/10.1145/3665314.3670800},
+      doi          = {10.1145/3665314.3670800}
+    }
+
+- id: p-shreg
+  venue: JSA
+  year: 2024
+  type: journal
+  thrust: [micro]
+  selected: []
+  title: "SHREG: Mitigating register redundancy in GPUs"
+  authors:
+    - { name: "Seunghyun Jin" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Jonghyun Lee" }
+    - { name: "Junsung Kim" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://www.sciencedirect.com/science/article/pii/S1383762124000894" }
+    - { label: DOI, href: "https://doi.org/10.1016/j.sysarc.2024.103152" }
+  bibtex: |
+    @article{jin2024shreg,
+      author       = {Seunghyun Jin and
+                      Hyunwuk Lee and
+                      Jonghyun Lee and
+                      Junsung Kim and
+                      Won Woo Ro},
+      title        = {{SHREG:} Mitigating register redundancy in GPUs},
+      journal      = {J. Syst. Archit.},
+      volume       = {152},
+      pages        = {103152},
+      year         = {2024},
+      url          = {https://doi.org/10.1016/j.sysarc.2024.103152},
+      doi          = {10.1016/J.SYSARC.2024.103152}
+    }
+
+- id: p-cvnn
+  venue: MICRO
+  year: 2023
+  type: conference
+  thrust: [micro, co-design]
+  selected: [micro]
+  title: "Exploiting Inherent Properties of Complex Numbers for Accelerating Complex Valued Neural Networks"
+  authors:
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Hyungjun Jang" }
+    - { name: "Sungbin Kim" }
+    - { name: "Sungwoo Kim" }
+    - { name: "Wonho Cho" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://dl.acm.org/doi/abs/10.1145/3613424.3614287" }
+    - { label: DOI, href: "https://doi.org/10.1145/3613424.3614287" }
+  bibtex: |
+    @inproceedings{lee2023complex,
+      author       = {Hyunwuk Lee and
+                      Hyungjun Jang and
+                      Sungbin Kim and
+                      Sungwoo Kim and
+                      Wonho Cho and
+                      Won Woo Ro},
+      title        = {Exploiting Inherent Properties of Complex Numbers for Accelerating
+                      Complex Valued Neural Networks},
+      booktitle    = {Proceedings of the 56th Annual {IEEE/ACM} International Symposium
+                      on Microarchitecture, {MICRO} 2023, Toronto, ON, Canada, 28 October
+                      2023 - 1 November 2023},
+      pages        = {1121--1134},
+      publisher    = {{ACM}},
+      year         = {2023},
+      url          = {https://doi.org/10.1145/3613424.3614287},
+      doi          = {10.1145/3613424.3614287}
+    }
+
+- id: p-earlyadaptor
+  venue: ISPASS
+  year: 2023
+  type: conference
+  thrust: [system]
+  selected: [system]
+  title: "Early-Adaptor: An Adaptive Framework for Proactive UVM Memory Management"
+  authors:
+    - { name: "Seokjin Go" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Junsung Kim" }
+    - { name: "Jiwon Lee" }
+    - { name: "Myung Kuk Yoon" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: []
+  links:
+    - { label: Paper, href: "https://ieeexplore.ieee.org/abstract/document/10158179" }
+    - { label: DOI, href: "https://doi.org/10.1109/ISPASS57527.2023.00032" }
+  bibtex: |
+    @inproceedings{go2023earlyadaptor,
+      author       = {Seokjin Go and
+                      Hyunwuk Lee and
+                      Junsung Kim and
+                      Jiwon Lee and
+                      Myung Kuk Yoon and
+                      Won Woo Ro},
+      title        = {Early-Adaptor: An Adaptive Framework forProactive {UVM} Memory Management},
+      booktitle    = {{IEEE} International Symposium on Performance Analysis of Systems
+                      and Software, {ISPASS} 2023, Raleigh, NC, USA, April 23-25, 2023},
+      pages        = {248--258},
+      publisher    = {{IEEE}},
+      year         = {2023},
+      url          = {https://doi.org/10.1109/ISPASS57527.2023.00032},
+      doi          = {10.1109/ISPASS57527.2023.00032}
+    }
+
+- id: p-pat-mem
+  venue: "US Patent"
+  year: 2022
+  type: patent
+  thrust: []
+  selected: []
+  title: "Memory device including a plurality of areas having different refresh periods, memory controller controlling the same and memory system including the same (US 11,276,452)"
+  authors:
+    - { name: "Won Woo Ro" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Gun Ko" }
+    - { name: "Ipoom Jeong" }
+    - { name: "Min Seong Kim" }
+    - { name: "Yong Tag Song" }
+    - { name: "Sung Jae Lee" }
+  awards: ["SK Hynix Industry-Academic Research Project Outstanding Invention"]
+  labels: []
+  links:
+    - { label: Patent, href: "https://patents.google.com/patent/US11276452B2/en" }
+  bibtex: |
+    @misc{ro2022refresh,
+      author       = {Won Woo Ro and
+                      Hyunwuk Lee and
+                      Gun Ko and
+                      Ipoom Jeong and
+                      Min Seong Kim and
+                      Yong Tag Song and
+                      Sung Jae Lee},
+      title        = {Memory device including a plurality of areas having different refresh
+                      periods, memory controller controlling the same and memory system
+                      including the same},
+      howpublished = {U.S. Patent 11,276,452},
+      year         = {2022},
+      month        = mar,
+      url          = {https://patents.google.com/patent/US11276452B2/en}
+    }
+
+- id: p-dlgpu
+  venue: "Book Chapter"
+  year: 2021
+  type: chapter
+  thrust: []
+  selected: []
+  title: "Deep learning with GPUs"
+  labels: ["Advances in Computers"]
+  authors:
+    - { name: "Won Jeon" }
+    - { name: "Gun Ko" }
+    - { name: "Jiwon Lee" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Dongho Ha" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  links:
+    - { label: Chapter, href: "https://www.sciencedirect.com/science/article/abs/pii/S0065245820300905" }
+    - { label: DOI, href: "https://doi.org/10.1016/bs.adcom.2020.11.003" }
+  bibtex: |
+    @article{jeon2021dlgpu,
+      author       = {Won Jeon and
+                      Gun Ko and
+                      Jiwon Lee and
+                      Hyunwuk Lee and
+                      Dongho Ha and
+                      Won Woo Ro},
+      title        = {Chapter Six - Deep learning with GPUs},
+      journal      = {Adv. Comput.},
+      volume       = {122},
+      pages        = {167--215},
+      year         = {2021},
+      url          = {https://doi.org/10.1016/bs.adcom.2020.11.003},
+      doi          = {10.1016/BS.ADCOM.2020.11.003}
+    }

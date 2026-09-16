@@ -1,0 +1,121 @@
+---
+layout: page
+nav_label: Publications
+nav_order: 2
+permalink: /publications/
+title: Publications
+# TODO (review): from the design; it describes the filters accurately, so it may be fine as is.
+lede: >-
+  Filter by year, research direction, or venue type. The BibTeX export follows
+  whatever the filters currently show, so you can take just the subset you need.
+---
+
+{%- assign years = site.data.publications | map: 'year' | uniq | sort | reverse -%}
+{%- assign types = site.data.publications | map: 'type' | uniq | sort -%}
+
+<div class="subbar print-hide" data-filterbar>
+  <div class="gut filterbar-inner">
+    <div class="chiprows" data-chiprows>
+      <div class="chiprow">
+        <span class="facet" id="facet-year">Year</span><span class="chips">
+        <button type="button" class="chip" data-facet="year" data-value="all" aria-pressed="true">All</button>
+        {%- for y in years -%}
+        <button type="button" class="chip" data-facet="year" data-value="{{ y }}" aria-pressed="false">{{ y }}</button>
+        {%- endfor -%}
+      </span></div>
+      <div class="chiprow">
+        <span class="facet" id="facet-area">Area</span><span class="chips">
+        <button type="button" class="chip" data-facet="thrust" data-value="all" aria-pressed="true">All</button>
+        {%- for t in site.data.thrusts -%}
+        <button type="button" class="chip" data-facet="thrust" data-value="{{ t.key }}" aria-pressed="false">{{ t.nav_label }}</button>
+        {%- endfor -%}
+      </span></div>
+      <div class="chiprow">
+        <span class="facet" id="facet-type">Type</span><span class="chips">
+        <button type="button" class="chip" data-facet="type" data-value="all" aria-pressed="true">All</button>
+        {%- for ty in types -%}
+        <button type="button" class="chip" data-facet="type" data-value="{{ ty }}" aria-pressed="false">{{ ty | capitalize }}</button>
+        {%- endfor -%}
+      </span></div>
+    </div>
+
+    <button type="button" class="btn btn-md btn-outlined filter-btn" data-filter-open aria-expanded="false">
+      {% include icon.html name="Filter" size=20 %}<span data-filter-btn-label>Filters</span>
+    </button>
+
+    <a class="export" href="#" data-export>Export BibTeX (<span data-export-count>{{ site.data.publications.size }}</span>)</a>
+  </div>
+</div>
+
+{%- comment -%}
+  The count is deliberately not shown. It survives only as a live region so
+  filter changes are still announced.
+{%- endcomment -%}
+<p id="pubcount" class="sr-only" role="status" aria-live="polite"></p>
+
+<div class="gut" style="padding-top:8px;padding-bottom:88px">
+  <div data-publist>
+    {%- for p in site.data.publications -%}
+    <article id="{{ p.id }}" class="grid-pub" tabindex="-1"
+             data-year="{{ p.year }}" data-type="{{ p.type }}" data-thrust="{{ p.thrust | join: ' ' }}">
+      <div class="venue">{{ p.venue }}<br>{{ p.year }}</div>
+      <div>
+        <h2 class="title">{{ p.title }}</h2>
+        <p class="authors">
+          {%- for a in p.authors -%}
+            {%- if a.me -%}<span class="me">{{ a.name }}</span>{%- else -%}{{ a.name }}{%- endif -%}
+            {%- unless forloop.last %}, {% endunless -%}
+          {%- endfor -%}
+        </p>
+        {%- if p.awards.size > 0 or p.labels.size > 0 -%}
+        <div class="meta">
+          {%- for aw in p.awards -%}<span class="badge badge-violet">{{ aw }}</span>{%- endfor -%}
+          {%- for lb in p.labels -%}<span class="badge badge-neutral">{{ lb }}</span>{%- endfor -%}
+        </div>
+        {%- endif -%}
+        <div class="meta links">
+          {%- for l in p.links -%}
+          <a href="{{ l.href }}"{% include external.html href=l.href %}>{{ l.label }}</a>
+          {%- endfor -%}
+          {%- if p.bibtex -%}
+          <button type="button" data-bib-toggle aria-expanded="false" aria-controls="bib-{{ p.id }}">BibTeX</button>
+          {%- endif -%}
+        </div>
+        {%- if p.bibtex -%}
+        {%- comment -%}
+          The entry's own record, revealed in place. The bulk export up top
+          hands out the same text for everything the filters currently show.
+        {%- endcomment -%}
+        <div class="bibblock" id="bib-{{ p.id }}" hidden>
+          <button type="button" class="btn btn-sm btn-outlined copy" data-bib-copy>Copy</button>
+          <pre>{{ p.bibtex | escape }}</pre>
+        </div>
+        {%- endif -%}
+      </div>
+    </article>
+    {%- endfor -%}
+  </div>
+
+  <div class="pub-empty" data-pub-empty hidden>
+    <p class="t">No publications match these filters</p>
+    <p class="d">Try widening one of the three facets.</p>
+    <button type="button" class="btn btn-md btn-outlined" data-clear-filters>Clear filters</button>
+  </div>
+</div>
+
+<div class="sheet-dim" data-filter-sheet hidden>
+  <div class="sheet" tabindex="-1" role="dialog" aria-modal="true" aria-label="Filter publications"
+       style="max-height:85vh;overflow:auto">
+    <div class="grab" aria-hidden="true"><span></span></div>
+    <div style="padding:8px 20px 0">
+      <p class="t-20 c-ink">Filters</p>
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:20px" data-sheet-facets></div>
+      <div style="margin-top:24px;display:flex;gap:8px">
+        <button type="button" class="btn btn-md btn-outlined" data-clear-filters style="flex:1">Clear</button>
+        <button type="button" class="btn btn-md btn-solid" data-filter-apply style="flex:1">Show all</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="pubdata">{{ site.data.publications | jsonify }}</script>

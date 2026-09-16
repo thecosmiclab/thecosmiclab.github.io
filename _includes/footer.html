@@ -1,0 +1,21 @@
+<footer class="foot dark" data-theme="dark">
+  <div class="gut cols">
+    <div>
+      <span class="wm" aria-label="{{ site.title }}">{% include wordmark.html mark=false %}</span>
+      <p class="contact">
+        {{ site.lab.pi.name }} · {{ site.lab.pi.title }}<br>
+        {{ site.lab.pi.school }}, {{ site.lab.institution }}<br>
+        <a href="mailto:{{ site.lab.pi.email }}">{{ site.lab.pi.email }}</a>
+      </p>
+    </div>
+    <nav aria-label="Footer">
+      <ul>{% include nav-items.html all=true %}</ul>
+    </nav>
+  </div>
+  {%- comment -%} The recruiting line needs both flags. {%- endcomment -%}
+  {%- if site.lab.recruiting_open and site.lab.show_join -%}
+  <div class="gut">
+    <p class="recruit">We are recruiting. <a href="{{ '/join/' | relative_url }}">See who we are looking for</a>.</p>
+  </div>
+  {%- endif -%}
+</footer>

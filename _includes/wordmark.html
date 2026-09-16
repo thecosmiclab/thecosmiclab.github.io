@@ -1,0 +1,15 @@
+{%- comment -%}
+  The lab name comes from `title` in _config.yml and is split on the first
+  space: the first word carries weight 700, the rest 500. The weight gap (not a
+  lightness drop) makes the hierarchy, so the second half keeps full luminance
+  on the dark band — a muted grey there reads as disabled.
+
+  The two spans mean the wrapper needs an explicit aria-label, or screen
+  readers announce "COSMICLab".
+
+  `mark=false` drops the leading Sparkle (the hero lockup has none).
+{%- endcomment -%}
+{%- assign wm_parts = site.title | split: " " -%}
+{%- assign wm_strong = wm_parts[0] -%}
+{%- assign wm_light = site.title | remove_first: wm_strong | strip -%}
+{%- unless include.mark == false -%}<span class="mark">{% include icon.html name="Sparkle" size=include.mark_size %}</span>{%- endunless -%}<span class="cosmic">{{ wm_strong }}</span>{% if wm_light != "" %}<span class="lab">{{ wm_light }}</span>{% endif %}

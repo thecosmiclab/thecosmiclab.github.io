@@ -1,0 +1,27 @@
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="appbar is-over print-hide" data-appbar>
+  <div class="gut">
+    <a class="wm" href="{{ '/' | relative_url }}" aria-label="{{ site.title }}, home"
+       {% if page.url == "/" %}aria-current="page"{% endif %}>
+      {% include wordmark.html mark=false %}
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <ul>{% include nav-items.html %}</ul>
+    </nav>
+
+    <button class="menu-btn" type="button" data-menu-open aria-label="Open menu" aria-expanded="false">
+      <span data-ic-menu>{% include icon.html name="Menu" size=24 %}</span><span data-ic-close hidden>{% include icon.html name="Close" size=24 %}</span>
+    </button>
+  </div>
+</header>
+
+<div class="sheet-dim" data-menu-sheet hidden>
+  <div class="sheet" tabindex="-1" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="grab" aria-hidden="true"><span></span></div>
+    <nav aria-label="Menu">
+      <ul>{% include nav-items.html all=true %}</ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+# The lab is starting out, so every list is empty and the Members and Alumni
+# sections do not render at all. Add entries and they appear automatically.
+#
+# To add a group — postdocs, visiting students — add a block to `groups`. The
+# heading text lives beside its members, so there is no second list of labels
+# to keep in step, and the People page head count picks it up on its own.
+#
+# `photo` is a path under /assets/img/people/. Leave it out and the portrait
+# frame falls back to centred initials — no placeholder image needed.
+
+groups:
+  - key: phd
+    label: Ph.D. students
+    members: []
+    #  - name: "Ahyoung Kim"
+    #    korean: "김아영"
+    #    role: "Ph.D. · 2027–"
+    #    focus: "System architecture"
+    #    photo: ""
+    #    links:
+    #      - { label: Scholar, href: "https://..." }
+
+  - key: masters
+    label: M.S. students
+    members: []
+
+  - key: undergrad
+    label: Undergraduate researchers
+    members: []
+
+alumni: []
+#  - { name: "Minji Yoon", korean: "윤민지", degree: "M.S. · 2027-2029", now: "now at [affiliation]" }

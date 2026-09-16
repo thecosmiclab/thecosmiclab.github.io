@@ -1,0 +1,20 @@
+# An FAQ exists to absorb the questions that would otherwise arrive by email.
+# Replace these with the real ones as they come in; drop any that never do.
+- q: "Can I apply without a background in computer architecture?"
+  a: >-
+    A foundational understanding is highly recommended. However, we welcome
+    applicants with strong foundations in related areas such as operating
+    systems, system programming, or AI, provided they demonstrate the ability
+    to rapidly acquire architectural knowledge.
+- q: "Is experience with RTL design or simulators required?"
+  a: >-
+    No. While prior experience with cycle-accurate simulation is helpful, it is
+    not strictly required. Furthermore, RTL design is outside the primary scope
+    of our system-level architecture research. We focus primarily on your core
+    programming proficiency and analytical ability.
+- q: "How and when do undergraduates join?"
+  a: >-
+    We strongly prefer that students complete a research internship before
+    formally applying to our graduate program. To arrange an internship for the
+    summer or winter break, please contact us during the immediately preceding
+    semester.

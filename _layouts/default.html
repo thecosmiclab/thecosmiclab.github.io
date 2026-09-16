@@ -1,0 +1,30 @@
+<!doctype html>
+{%- comment -%}
+  A page whose feature flag is off is still built (Jekyll has no conditional
+  build), so it redirects to Home and asks not to be indexed. That keeps the
+  nav, the menu, and every in-page link consistent with the flag.
+{%- endcomment -%}
+{%- if page.flag and site.lab[page.flag] != true -%}
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url={{ '/' | absolute_url }}">
+<link rel="canonical" href="{{ '/' | absolute_url }}">
+<title>{{ site.title }}</title>
+</head>
+<body><p>This page is not available. <a href="{{ '/' | relative_url }}">Go to the homepage</a>.</p></body>
+</html>
+{%- else -%}
+<html lang="{{ site.lang | default: 'en' }}">
+<head>{% include head.html %}</head>
+<body>
+{% include header.html %}
+<main id="content">
+{{ content }}
+</main>
+{% include footer.html %}
+<script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</body>
+</html>
+{%- endif -%}

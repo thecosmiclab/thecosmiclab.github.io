@@ -1,0 +1,129 @@
+# Research directions. `key` is what publications reference in their `thrust`
+# list, so the two stay linked without a second vocabulary.
+#
+# Entries with `on_research: false` are filter-only: they appear as an Area
+# chip on Publications but get no section on the Research page and need no
+# prose. Everything else is a research direction and does.
+#
+# TO FILL IN: `lead`, `p1`, and optionally `p2` for each direction — `lead` is
+# bolded as the opening sentence, `p1` continues it in the same paragraph.
+# `ongoing:` is a list of plain strings ("what we are building right now");
+# leave it empty and the "Ongoing work" panel is omitted entirely.
+# `figure:` is the image for the frame and `diagram:` its alt text. With no
+# figure the frame is omitted entirely.
+#
+# "Selected work" is NOT listed here. It comes from _data/publications.yml:
+# add this area's `key` to a publication's `selected` list and it appears in
+# that area's panel. Nothing to duplicate, and nothing to cap — the list is
+# short because you chose what goes in it.
+- id: t1
+  key: co-design
+  nav_label: "Hardware-Software Co-Design"
+  title: "Hardware-Software Co-Design for AI"
+  desc: "Hardware-software joint optimization integrating neural network compression, sparsity, and datapath architectures"
+  lead: >-
+    We co-design domain-specific hardware accelerators and hardware-aware
+    algorithms for efficient AI acceleration.
+  p1: >-
+    By jointly optimizing neural network quantization, sparsity (pruning), and
+    datapath architectures, we maximize the end-to-end efficiency of AI
+    workloads. Through this holistic approach, we aim to bridge the gap between
+    diverse software algorithms and underlying hardware structures.
+  p2: ""
+  # `figure` is the image shown above "Selected work". Leave it empty and no
+  # frame is drawn at all.
+  # Drop a PDF in assets/img/research/ and run tools/figures.sh to turn it
+  # into a PNG, then point `figure` at the .png.
+  figure: ""
+  # TODO: alt text for the figure. Only used once `figure` is set.
+  #   from the design: "System diagram — single-weight line art, one accent highlight"
+  diagram: "TODO: figure"
+  ongoing: []
+
+- id: t2
+  key: on-device
+  nav_label: "On-Device AI Acceleration"
+  title: "On-Device AI Acceleration"
+  desc: "Edge-efficient execution tailored for multimodal AI deployment under strict latency, memory, and power constraints"
+  lead: >-
+    We develop hardware-aware execution frameworks to deploy massive multimodal
+    AI models on power-constrained edge devices.
+  p1: >-
+    Executing complex workloads, such as Vision-Language-Action (VLA) models,
+    requires tailoring advanced model compression and system-level
+    optimizations to specific edge processors. We map these optimized workloads
+    onto actual edge hardware to profile their real-world latency, memory
+    footprint, and power consumption. This practical evaluation ensures that
+    our diverse optimization strategies translate to viable on-device AI
+    solutions.
+  p2: ""
+  # `figure` is the image shown above "Selected work". Leave it empty and no
+  # frame is drawn at all.
+  # Drop a PDF in assets/img/research/ and run tools/figures.sh to turn it
+  # into a PNG, then point `figure` at the .png.
+  figure: ""
+  # TODO: alt text for the figure. Only used once `figure` is set.
+  #   from the design: "Datapath diagram"
+  diagram: "TODO: figure"
+  ongoing: []
+
+- id: t3
+  key: system
+  nav_label: "System Architecture for AI"
+  title: "System Architecture for AI"
+  desc: "Scalable multi-node systems featuring Processing-Near-Memory (PNM), CXL, and multi-GPU orchestration"
+  lead: >-
+    We design hardware architectures and optimize system stacks to accelerate
+    large-scale AI across multiple compute nodes.
+  p1: >-
+    To overcome the interconnect and memory bottlenecks of datacenter AI, we
+    develop scalable systems ranging from Processing-Near-Memory (PNM) hardware
+    to efficient multi-GPU configurations. By leveraging technologies such as
+    Compute Express Link (CXL) and refining data orchestration across nodes, we
+    enable scalable execution of large-scale AI models.
+  p2: ""
+  # `figure` is the image shown above "Selected work". Leave it empty and no
+  # frame is drawn at all.
+  # Drop a PDF in assets/img/research/ and run tools/figures.sh to turn it
+  # into a PNG, then point `figure` at the .png.
+  figure: ""
+  # TODO: alt text for the figure. Only used once `figure` is set.
+  #   from the design: "Memory hierarchy diagram"
+  diagram: "TODO: figure"
+  ongoing: []
+
+- id: t4
+  key: micro
+  nav_label: "Hardware Microarchitecture"
+  title: "Hardware Microarchitecture"
+  desc: "Core processor design emphasizing bandwidth-efficient memory hierarchies, execution units, and cycle-accurate simulation"
+  lead: >-
+    We design and evaluate core microarchitectures and memory systems to
+    advance the fundamental performance of modern processors.
+  p1: >-
+    We investigate essential hardware structures that determine overall
+    processing efficiency, focusing on bandwidth-efficient memory hierarchies,
+    specialized execution units, and optimized data movement. By building
+    detailed cycle-accurate simulators, we quantitatively analyze new
+    microarchitectural mechanisms that maximize compute density and hardware
+    utilization.
+  p2: ""
+  # `figure` is the image shown above "Selected work". Leave it empty and no
+  # frame is drawn at all.
+  # Drop a PDF in assets/img/research/ and run tools/figures.sh to turn it
+  # into a PNG, then point `figure` at the .png.
+  figure: ""
+  # TODO: alt text for the figure. Only used once `figure` is set.
+  #   from the design: "Pipeline diagram"
+  diagram: "TODO: figure"
+  ongoing: []
+
+# Not a research direction of the lab — it has no section on the Research page
+# (`on_research: false`), it only gives the Publications Area filter a home for
+# work that does not belong under the four above.
+- id: t5
+  key: ai-algorithm
+  nav_label: "AI Algorithm"
+  title: "AI Algorithm"
+  desc: ""
+  on_research: false
