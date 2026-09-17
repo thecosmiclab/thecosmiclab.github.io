@@ -22,7 +22,7 @@
 
     function measure() {
       raf = 0;
-      if (!mqDesktop.matches) {           // static header; always dark
+      if (!mqDesktop.matches) {           // pinned in flow on phones; always dark
         bar.classList.add('is-over');
         bar.classList.remove('is-solid');
         return;
@@ -58,7 +58,7 @@
         var cs = getComputedStyle(bar);
         if (cs.position === 'sticky') offset = (parseFloat(cs.top) || 0) + bar.offsetHeight;
         else offset = bar.offsetHeight;
-      } else if (appbar && getComputedStyle(appbar).position === 'fixed') {
+      } else if (appbar && /^(fixed|sticky)$/.test(getComputedStyle(appbar).position)) {
         offset = appbar.offsetHeight;
       }
       document.documentElement.style.setProperty('--sticky-offset', Math.round(offset) + 'px');
