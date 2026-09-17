@@ -153,22 +153,82 @@
 
   /* ---------------------------------------------------------------------
      Research — area tabs
-     Scrolls straight to the target and moves focus there. It must not scroll
-     to top first: that produces a visible jump-to-top flash.
+
+     Three things have to hold for the tabs to feel right on every screen:
+
+     1. Every section can reach the top. On a tall window the last sections
+        run out of page below them, so a click would stop short and two tabs
+        could land on the same spot. The last section is padded by exactly
+        the shortfall, measured, so nothing is added where it is not needed.
+
+     2. The underline follows one rule. The current section is the last one
+        whose top has crossed a line a quarter of the way down the visible
+        area (capped, so a short section on a very tall window still counts).
+        While a click's smooth scroll is still travelling, that rule is
+        paused, so the underline does not flick through the sections passed
+        on the way; it resumes once scrolling settles or the reader takes
+        over with the wheel, touch or keys.
+
+     3. The underlined tab is on screen. On a phone the tab strip scrolls
+        sideways, so the active tab is brought into view whenever it changes.
      --------------------------------------------------------------------- */
   (function () {
     var tabs = $$('[data-area-tab]');
     if (!tabs.length) return;
+    var strip = tabs[0].parentNode;
+    var sections = tabs.map(function (t) { return document.getElementById(t.getAttribute('data-area-tab')); })
+                       .filter(Boolean);
+    if (!sections.length) return;
+    var last = sections[sections.length - 1];
+    var locked = null, settleTimer = 0, current = null;
+
+    function offset() {
+      var v = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sticky-offset'));
+      return (isNaN(v) ? 120 : v) + 12;   // matches scroll-margin-top in main.css
+    }
+
+    function revealInStrip(tab) {
+      var sr = strip.getBoundingClientRect(), tr = tab.getBoundingClientRect(), pad = 20;
+      if (tr.left < sr.left + pad) strip.scrollLeft -= (sr.left + pad - tr.left);
+      else if (tr.right > sr.right - pad) strip.scrollLeft += (tr.right - (sr.right - pad));
+    }
 
     function setActive(id) {
+      if (id === current) return;
+      current = id;
       tabs.forEach(function (t) {
         var on = t.getAttribute('data-area-tab') === id;
         t.classList.toggle('is-active', on);
+        if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
         var ul = $('.ul', t);
         if (on && !ul) { ul = document.createElement('span'); ul.className = 'ul'; ul.setAttribute('aria-hidden', 'true'); t.appendChild(ul); }
         if (!on && ul) ul.remove();
+        if (on) revealInStrip(t);
       });
     }
+
+    function spy() {
+      if (locked) return;
+      var root = document.documentElement;
+      if (window.scrollY + window.innerHeight >= root.scrollHeight - 2) { setActive(last.id); return; }
+      var off = offset();
+      // A quarter of the way down, but never more than 96px below the bar: on a
+      // very tall window a whole short section would otherwise fit above it.
+      var line = off + Math.min((window.innerHeight - off) * 0.25, 96);
+      var id = sections[0].id;
+      sections.forEach(function (sec) { if (sec.getBoundingClientRect().top <= line) id = sec.id; });
+      setActive(id);
+    }
+
+    function padLast() {
+      last.style.minHeight = '';
+      var root = document.documentElement;
+      var wanted = last.getBoundingClientRect().top + window.scrollY - offset();
+      var shortfall = wanted - (root.scrollHeight - window.innerHeight);
+      if (shortfall > 0) last.style.minHeight = Math.ceil(last.offsetHeight + shortfall) + 'px';
+    }
+
+    function release() { locked = null; clearTimeout(settleTimer); spy(); }
 
     tabs.forEach(function (t) {
       t.addEventListener('click', function (e) {
@@ -176,31 +236,30 @@
         var target = document.getElementById(id);
         if (!target) return;
         e.preventDefault();
+        locked = id;
         setActive(id);
         history.replaceState(null, '', '#' + id);
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         target.focus({ preventScroll: true });
-        // Nudge the header to re-measure: a programmatic scroll is not
-        // guaranteed to deliver a scroll event everywhere.
+        clearTimeout(settleTimer);
+        settleTimer = setTimeout(release, 200);   // released sooner if no scrolling happens
         window.dispatchEvent(new Event('scroll'));
       });
     });
 
-    if ('IntersectionObserver' in window) {
-      var seen = {};
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) { seen[en.target.id] = en.isIntersecting ? en.boundingClientRect.top : null; });
-        var visible = Object.keys(seen).filter(function (k) { return seen[k] !== null; });
-        if (visible.length) {
-          visible.sort(function (a, b) { return seen[a] - seen[b]; });
-          setActive(visible[0]);
-        }
-      }, { rootMargin: '-140px 0px -60% 0px', threshold: 0 });
-      tabs.forEach(function (t) {
-        var el = document.getElementById(t.getAttribute('data-area-tab'));
-        if (el) io.observe(el);
-      });
-    }
+    window.addEventListener('scroll', function () {
+      if (locked) { clearTimeout(settleTimer); settleTimer = setTimeout(release, 160); return; }
+      spy();
+    }, { passive: true });
+    ['wheel', 'touchstart', 'keydown'].forEach(function (type) {
+      window.addEventListener(type, function () { if (locked) release(); }, { passive: true });
+    });
+
+    function refresh() { padLast(); spy(); }
+    refresh();
+    window.addEventListener('resize', refresh);
+    window.addEventListener('load', refresh, { once: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
   })();
 
   /* ---------------------------------------------------------------------
