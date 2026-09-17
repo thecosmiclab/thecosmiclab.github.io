@@ -64,8 +64,10 @@
   --font-sans:"Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --font-mono:"SF Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 
-  /* Line length for full-width prose: the PI bio and the Join copy. */
+  /* Line length for full-width prose. The PI bio sits beside a portrait, so it
+     stays a little shorter than the Join page, which has the full column. */
   --measure:78ch;
+  --measure-join:880px;
   --gut:40px;
   --container:1120px;
   --header-h:64px;
@@ -240,7 +242,7 @@ main{flex:1}
 .hero h1{font-size:40px;line-height:52px;letter-spacing:-0.0282em;font-weight:700;color:var(--on-inv)}
 .hero .eyebrow{font-size:15px;line-height:22px;font-weight:600;letter-spacing:0.0096em;
   color:var(--on-inv-2);margin-bottom:14px}
-.hero .lede{margin-top:16px;max-width:60ch;font-size:16px;line-height:26px;
+.hero .lede{margin-top:16px;max-width:640px;font-size:16px;line-height:26px;
   letter-spacing:0.0057em;font-weight:500;color:var(--on-inv-2);text-wrap:pretty}
 .hero h1 .cosmic{color:var(--on-inv)}
 .hero h1 .lab{color:var(--on-inv-2);margin-left:4px;font-weight:500}
@@ -486,7 +488,7 @@ main{flex:1}
 .statusbanner .t{margin-top:10px;font-size:20px;line-height:28px;letter-spacing:-0.012em;
   font-weight:600;color:var(--ink)}
 .statusbanner .d{margin-top:4px;font-size:15px;line-height:24px;letter-spacing:0.0096em;
-  font-weight:500;color:var(--prose);text-wrap:pretty;max-width:62ch}
+  font-weight:500;color:var(--prose);text-wrap:pretty;max-width:640px}
 /* The CTA is 40px tall with a wider inset than the generic medium button. */
 .cta{flex:none;height:40px;padding:0 20px;border-radius:var(--r10);
   font-size:15px;line-height:22px;letter-spacing:0.0096em;font-weight:600}
@@ -508,7 +510,7 @@ main{flex:1}
 .faq button:hover{background:rgba(var(--overlay),var(--ov-light-hover))}
 .faq button:active{background:rgba(var(--overlay),var(--ov-light-press))}
 .faq button .ic{display:flex;color:var(--slate);flex:none}
-.faq .panel{padding:0 0 24px;max-width:var(--measure);font-size:15px;line-height:24px;
+.faq .panel{padding:0 0 24px;max-width:var(--measure-join);font-size:15px;line-height:24px;
   letter-spacing:0.0096em;font-weight:500;color:var(--prose);text-wrap:pretty}
 
 /* ==========================================================================
