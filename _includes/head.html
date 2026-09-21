@@ -6,6 +6,11 @@
 <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+{%- comment -%}
+  GitHub Pages tells browsers to reuse CSS and JS for ten minutes. The build
+  time on the URL changes with every deploy, so visitors get the new files
+  straight away instead of a stale stylesheet against fresh HTML.
+{%- endcomment -%}
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 {%- feed_meta -%}
 {%- seo -%}

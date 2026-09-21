@@ -139,6 +139,7 @@ main{flex:1}
 
 .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;
   padding-bottom:12px;box-shadow:inset 0 -1px 0 var(--line)}
+.sec-head[id]{scroll-margin-top:calc(var(--sticky-offset, 120px) + 12px)}
 .sec-head h2{font-size:22px;line-height:30px;font-weight:600;letter-spacing:-0.0194em;color:var(--ink)}
 
 /* Every edge in this design is an inner shadow — never a border, so it never

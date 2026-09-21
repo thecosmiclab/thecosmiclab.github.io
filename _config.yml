@@ -52,13 +52,18 @@ lab:
 
   # The Join page's status banner. Everything here changes once per intake
   # cycle, so it lives in one place rather than inside the page markup.
-  #
-  # TODO: add the deadline to `open_body` once the department announces it.
   recruiting:
-    open_headline: "Ph.D., M.S., and undergraduate researchers for Spring 2027"
+    # No dates here on purpose: the admissions office owns the schedule, and
+    # the phrase "GIST graduate admissions" in open_body becomes a link to
+    # admissions_url on the page. `open_note` is an optional extra line; its
+    # phrase "guidelines below" links to the Postdoctoral researchers section.
+    open_headline: "Ph.D., M.S., and undergraduate researchers for Spring and Fall 2027"
     open_body: >-
-      The application deadline is set by the department and has not been
-      announced yet. Emailing the PI before it opens is recommended.
+      Applications are now open through GIST graduate admissions. We recommend
+      emailing the PI before you apply.
+    open_note: >-
+      Postdoctoral candidates apply to the lab directly by following the
+      guidelines below.
     closed_headline: "We are not recruiting at the moment"
     closed_body: >-
       Watch this page for the next intake, or email the PI to be told when it
