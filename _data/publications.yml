@@ -91,6 +91,7 @@
   awards: []
   labels: []
   links:
+    - { label: Paper, href: "https://ieeexplore.ieee.org/abstract/document/11617481" }
     - { label: DOI, href: "https://doi.org/10.1109/ISCA66397.2026.00175" }
   bibtex: |
     @inproceedings{kim2026mxffp,
@@ -131,6 +132,7 @@
   awards: ["Samsung Industry-Academic Research Project Paper Award"]
   labels: []
   links:
+    - { label: Paper, href: "https://ieeexplore.ieee.org/abstract/document/11617444" }
     - { label: DOI, href: "https://doi.org/10.1109/ISCA66397.2026.00134" }
   bibtex: |
     @inproceedings{jung2026slice,
