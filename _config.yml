@@ -91,7 +91,6 @@ defaults:
         alt: "COSMIC Lab, Computer System and Microarchitecture Design Laboratory at GIST"
 
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
 
