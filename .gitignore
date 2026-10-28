@@ -4,7 +4,6 @@
 .jekyll-cache/
 .jekyll-metadata
 .sass-cache/
-Gemfile.lock
 _design-ref/
 _site/
 vendor/
