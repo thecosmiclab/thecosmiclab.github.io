@@ -29,10 +29,49 @@
 #
 # `bibtex` is the record the Export BibTeX link hands out verbatim. Papers use
 # DBLP's official entry (DBLP bookkeeping fields removed, citation key
-# rewritten to firstauthor+year+shortname); the PACT 2026 paper and the three
-# patents are not in DBLP, so those entries are written by hand.
+# rewritten to firstauthor+year+shortname); the HPCA 2027 and PACT 2026 papers
+# and the three patents are not in DBLP, so those entries are written by hand.
 # Without this field the exporter falls back to a bare generated stub, so keep
 # it filled in for new entries.
+
+- id: p-prism
+  venue: HPCA
+  year: 2027
+  type: conference
+  thrust: [co-design]
+  selected: [co-design]
+  title: "Prism: Accelerating Video Diffusion Model via Pattern-Aware Reuse based Sparse Attention"
+  authors:
+    - { name: "Sungbin Kim" }
+    - { name: "Hyunwuk Lee", me: true }
+    - { name: "Dongho Ha" }
+    - { name: "Hyun Jae Oh" }
+    - { name: "Sungwoo Kim" }
+    - { name: "Junsung Kim" }
+    - { name: "Ipoom Jeong" }
+    - { name: "Yingyan (Celine) Lin" }
+    - { name: "Won Woo Ro" }
+  awards: []
+  labels: ["To appear"]
+  links: []
+  bibtex: |
+    @inproceedings{kim2027prism,
+      author       = {Sungbin Kim and
+                      Hyunwuk Lee and
+                      Dongho Ha and
+                      Hyun Jae Oh and
+                      Sungwoo Kim and
+                      Junsung Kim and
+                      Ipoom Jeong and
+                      Yingyan Celine Lin and
+                      Won Woo Ro},
+      title        = {Prism: Accelerating Video Diffusion Model via Pattern-Aware Reuse
+                      based Sparse Attention},
+      booktitle    = {Proceedings of the {IEEE} International Symposium on High-Performance
+                      Computer Architecture, {HPCA} 2027},
+      year         = {2027},
+      note         = {To appear}
+    }
 
 - id: p-slgs
   venue: PACT
@@ -191,7 +230,7 @@
   year: 2025
   type: conference
   thrust: [micro, co-design]
-  selected: [co-design]
+  selected: [micro]
   title: "BitL: A Hybrid Bit-Serial and Parallel Deep Learning Accelerator for Critical Path Reduction"
   authors:
     - { name: "Seunghyun Lee" }
