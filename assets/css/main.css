@@ -318,6 +318,11 @@ main{flex:1}
    Home
    ========================================================================== */
 .band{margin:48px 0 0;padding:40px;border-radius:var(--r12)}
+.band.notice{margin-top:16px}
+.band.notice .stack{gap:10px}
+.notice-label{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;color:var(--slate)}
+.notice-t{font-size:22px;line-height:30px;letter-spacing:-0.0194em;font-weight:700;color:var(--ink);text-wrap:pretty}
+.notice-link{display:inline-flex;align-items:center;gap:2px;font-size:15px;line-height:24px;font-weight:600}
 .band .lead-h{font-size:32px;line-height:44px;letter-spacing:-0.0253em;font-weight:700;color:var(--ink);text-wrap:pretty}
 /* One measure for the whole card, so the headline and the paragraphs wrap on
    the same line length instead of the paragraphs breaking earlier. */
@@ -579,7 +584,7 @@ main{flex:1}
   .promo .cta{height:auto;min-height:44px;white-space:normal;text-align:center}
   .foot .cols{grid-template-columns:1fr;gap:28px}
   /* Every interactive element clears 44px on touch. */
-  .tap,.linkrow a,.row-work a,.grid-pub .links a,.foot nav a,.gut a[href^="mailto:"]{
+  .tap,.notice-link,.linkrow a,.row-work a,.grid-pub .links a,.foot nav a,.gut a[href^="mailto:"]{
     display:inline-flex;align-items:center;min-height:44px}
 }
 @media (max-width:479px){

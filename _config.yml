@@ -80,6 +80,17 @@ lab:
 
   # Subject-line tag applicants are asked to use.
   subject_tag: "GIST Application"
+  # A notice card under the Welcome card on the homepage. Leave `text` empty
+  # and the card disappears. `href` is a site path or a full URL.
+  home_notice:
+    label: "Notice"
+    title: "Winter research internships"
+    text: >-
+      The department will open the call for winter research interns in
+      mid-November.
+    link_label: "Details"
+    href: "/join/#internship"
+
   # GIST's official summer and winter undergraduate research internship
   # program, promoted on the Join page. When set, the program name there links
   # to it; leave empty and it stays plain text.
