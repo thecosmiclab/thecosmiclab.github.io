@@ -55,16 +55,20 @@ lab:
   recruiting:
     # No dates here on purpose: the admissions office owns the schedule, and
     # the phrase "GIST graduate admissions" in open_body becomes a link to
-    # admissions_url on the page. `open_note` is an optional extra line; its
-    # phrase "guidelines below" links to the Postdoctoral researchers section.
+    # admissions_url on the page.
     open_headline: "Ph.D., M.S., and undergraduate researchers for Spring and Fall 2027"
     open_body: >-
       Applications are now open through GIST graduate admissions. We recommend
-      emailing the PI before you apply. Undergraduate interns can email the PI
-      directly.
-    open_note: >-
-      Postdoctoral candidates apply to the lab directly by following the
-      guidelines below.
+      emailing the PI before you apply.
+    # Each line below is optional. "summer and winter research internships"
+    # links to the internship section, "guidelines below" to the postdoc one.
+    open_notes:
+      - >-
+        Undergraduates can join through GIST's summer and winter research
+        internships.
+      - >-
+        Postdoctoral candidates apply to the lab directly by following the
+        guidelines below.
     closed_headline: "We are not recruiting at the moment"
     closed_body: >-
       Watch this page for the next intake, or email the PI to be told when it
@@ -76,6 +80,10 @@ lab:
 
   # Subject-line tag applicants are asked to use.
   subject_tag: "GIST Application"
+  # GIST's official summer and winter undergraduate research internship
+  # program, promoted on the Join page. When set, the program name there links
+  # to it; leave empty and it stays plain text.
+  internship_url: ""
   github_org: "https://github.com/thecosmiclab"
 
 # The card image shown when a link to any page is pasted into a chat or feed.

@@ -14,6 +14,8 @@ flag: show_join
 
 {%- assign open = site.lab.recruiting_open -%}
 {%- capture mailto -%}mailto:{{ site.lab.pi.email }}?subject={{ '[' | append: site.lab.subject_tag | append: '] ' | uri_escape }}{%- endcapture -%}
+{%- capture mailto_intern -%}mailto:{{ site.lab.pi.email }}?subject={{ '[' | append: site.lab.subject_tag | append: '] Your Name (Intern)' | uri_escape }}{%- endcapture -%}
+{%- capture program -%}{% if site.lab.internship_url != "" %}<a href="{{ site.lab.internship_url }}"{% include external.html href=site.lab.internship_url %}>GIST research internship program</a>{% else %}GIST research internship program{% endif %}{%- endcapture -%}
 
 <div class="gut" style="padding-bottom:88px">
 
@@ -28,12 +30,26 @@ flag: show_join
       {%- if open -%}
       {%- capture admissions_link %}<a href="{{ site.lab.admissions_url }}"{% include external.html href=site.lab.admissions_url %}>GIST graduate admissions</a>{% endcapture -%}
       <p class="d">{{ site.lab.recruiting.open_body | replace: "GIST graduate admissions", admissions_link }}</p>
-      {%- if site.lab.recruiting.open_note %}<p class="d">{{ site.lab.recruiting.open_note | replace: "guidelines below", '<a href="#postdoc">guidelines below</a>' }}</p>{% endif -%}
+      {%- for note in site.lab.recruiting.open_notes %}<p class="d">{{ note | replace: "summer and winter research internships", '<a href="#internship">summer and winter research internships</a>' | replace: "guidelines below", '<a href="#postdoc">guidelines below</a>' }}</p>{% endfor -%}
       {%- else -%}
       <p class="d">{{ site.lab.recruiting.closed_body }}</p>
       {%- endif -%}
     </div>
     <a class="btn cta {% if open %}btn-solid{% else %}btn-outlined{% endif %}" href="{{ mailto }}">Email the PI</a>
+  </div>
+
+  <div class="bar" aria-hidden="true"></div>
+  <div class="sec-head" id="internship"><h2>Undergraduate research internships</h2></div>
+  <div class="promo">
+    <p class="promo-label">Official GIST programs</p>
+    <p class="promo-t">About the research internship program for summer and winter breaks</p>
+    <p class="promo-d">GIST runs official summer and winter research internships for undergraduates, with support from the institute. It is the best way to see what our research is like day to day, and we strongly prefer that students complete an internship before applying to our graduate program.</p>
+    <p class="promo-note">The winter internship call opens in mid-November. We recommend meeting with the PI before then.</p>
+    <ol class="steps">
+      <li><p class="sn">Step 1</p><p class="st">Meet with the PI first</p><p class="sd">Email the PI to set up a short meeting before you apply, so we can talk about your interests and a project that fits. Use the subject line <span class="c-ink" style="font-weight:600">[{{ site.lab.subject_tag }}] Your Name (Intern)</span>.</p></li>
+      <li><p class="sn">Step 2</p><p class="st">Apply through the {{ program }}</p><p class="sd">Once the call is posted, apply through the program on the GIST website.</p></li>
+    </ol>
+    <a class="btn cta btn-solid" href="{{ mailto_intern }}">Email the PI about an internship</a>
   </div>
 
   <div class="bar" aria-hidden="true"></div>

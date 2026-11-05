@@ -490,6 +490,17 @@ main{flex:1}
   font-weight:600;color:var(--ink)}
 .statusbanner .d{margin-top:4px;font-size:15px;line-height:24px;letter-spacing:0.0096em;
   font-weight:500;color:var(--prose);text-wrap:pretty;max-width:640px}
+.promo{margin-top:24px;padding:28px;border-radius:var(--r12);background:var(--surface)}
+.promo-label{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;color:var(--slate)}
+.promo-t{margin-top:8px;font-size:20px;line-height:28px;letter-spacing:-0.012em;font-weight:600;color:var(--ink)}
+.promo-d{margin-top:8px;font-size:16px;line-height:26px;font-weight:500;color:var(--prose);
+  text-wrap:pretty;max-width:var(--measure-join)}
+.promo-note{margin-top:16px;font-size:16px;line-height:26px;font-weight:600;color:var(--ink);text-wrap:pretty}
+.steps{margin:24px 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.steps li{padding:20px;border-radius:var(--r10);background:var(--bg, #fff)}
+.steps .sn{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;color:var(--slate)}
+.steps .st{margin-top:6px;font-size:16px;line-height:24px;font-weight:600;color:var(--ink)}
+.steps .sd{margin-top:6px;font-size:15px;line-height:24px;font-weight:500;color:var(--prose);text-wrap:pretty}
 /* The CTA is 40px tall with a wider inset than the generic medium button. */
 .cta{flex:none;height:40px;padding:0 20px;border-radius:var(--r10);
   font-size:15px;line-height:22px;letter-spacing:0.0096em;font-weight:600}
@@ -563,6 +574,9 @@ main{flex:1}
   .grid-members{grid-template-columns:repeat(2,1fr);gap:24px 16px}
   .row-alumni,.grid-project,.row-archive{grid-template-columns:1fr;gap:6px}
   .statusbanner{padding:20px;gap:16px;flex-direction:column;align-items:flex-start}
+  .promo{padding:20px}
+  .steps{grid-template-columns:1fr}
+  .promo .cta{height:auto;min-height:44px;white-space:normal;text-align:center}
   .foot .cols{grid-template-columns:1fr;gap:28px}
   /* Every interactive element clears 44px on touch. */
   .tap,.linkrow a,.row-work a,.grid-pub .links a,.foot nav a,.gut a[href^="mailto:"]{
