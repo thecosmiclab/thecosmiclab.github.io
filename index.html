@@ -34,18 +34,21 @@ intro_body:
         {%- endfor -%}
       </div>
     </div>
-    {%- assign notice = site.lab.home_notice -%}
-    {%- if notice.text and notice.text != "" -%}
-    {%- if notice.href contains "://" %}{% assign notice_href = notice.href %}{% else %}{% assign notice_href = notice.href | relative_url %}{% endif %}
-    <div class="band frame notice">
-      <div class="stack">
-        <p class="notice-label">{{ notice.label }}</p>
-        <p class="notice-t">{{ notice.title }}</p>
-        <p class="body">{{ notice.text }}</p>
-        {%- if notice.href and notice.href != "" %}
-        <p><a class="notice-link" href="{{ notice_href }}"{% include external.html href=notice_href %}>{{ notice.link_label }}<span aria-hidden="true">{% include icon.html name="ChevronRight" size=16 %}</span></a></p>
-        {%- endif %}
+    {%- if site.lab.home_notices.size > 0 %}
+    <div class="notices">
+      {%- for notice in site.lab.home_notices -%}
+      {%- if notice.href contains "://" %}{% assign notice_href = notice.href %}{% else %}{% assign notice_href = notice.href | relative_url %}{% endif %}
+      <div class="band frame notice">
+        <div class="stack">
+          <p class="notice-label">{{ notice.label }}</p>
+          <p class="notice-t">{{ notice.title }}</p>
+          <p class="body">{{ notice.text }}</p>
+          {%- if notice.href and notice.href != "" %}
+          <p class="notice-link-row"><a class="notice-link" href="{{ notice_href }}"{% include external.html href=notice_href %}>{{ notice.link_label }}<span aria-hidden="true">{% include icon.html name="ChevronRight" size=16 %}</span></a></p>
+          {%- endif %}
+        </div>
       </div>
+      {%- endfor %}
     </div>
     {%- endif %}
   </div>

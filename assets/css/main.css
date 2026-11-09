@@ -318,7 +318,10 @@ main{flex:1}
    Home
    ========================================================================== */
 .band{margin:48px 0 0;padding:40px;border-radius:var(--r12)}
-.band.notice{margin-top:16px}
+.notices{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.band.notice{margin:0;display:flex}
+.band.notice .stack{flex:1}
+.band.notice .notice-link-row{margin-top:auto}
 .band.notice .stack{gap:10px}
 .notice-label{font-size:13px;line-height:18px;letter-spacing:0.0194em;font-weight:600;color:var(--slate)}
 .notice-t{font-size:22px;line-height:30px;letter-spacing:-0.0194em;font-weight:700;color:var(--ink);text-wrap:pretty}
